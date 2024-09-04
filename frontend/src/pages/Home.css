@@ -1,0 +1,32 @@
+@keyframes fly1 {
+    0% { transform: translate(-100px, 0); }
+    50% { transform: translate(100px, -50px); }
+    100% { transform: translate(-100px, 0); }
+  }
+  
+  @keyframes fly2 {
+    0% { transform: translate(-150px, 0); }
+    50% { transform: translate(150px, -70px); }
+    100% { transform: translate(-150px, 0); }
+  }
+  
+  @keyframes fly3 {
+    0% { transform: translate(-200px, 0); }
+    50% { transform: translate(200px, -90px); }
+    100% { transform: translate(-200px, 0); }
+  }
+  
+  .animate-fly1 {
+    animation: fly1 4s ease-in-out infinite;
+  }
+  
+  .animate-fly2 {
+    animation: fly2 5s ease-in-out infinite;
+  }
+  
+  .animate-fly3 {
+    animation: fly3 6s ease-in-out infinite;
+  }
+
+
+  
