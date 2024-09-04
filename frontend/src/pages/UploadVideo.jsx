@@ -33,7 +33,7 @@ const UploadVideoPage = () => {
 
   const handleConfirmUpload = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/videos', {
+      const response = await fetch('https://kids-qcx9a7ah2-cueva91s-projects.vercel.app/api/videos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
