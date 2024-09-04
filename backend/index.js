@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
-const videoRoutes = require('./routes/videoRoutes');
+const videoRoutes = require('./routes/VideoRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
