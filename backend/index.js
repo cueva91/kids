@@ -7,7 +7,9 @@ const videoRoutes = require('./routes/VideoRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://abckidslearning.com'
+}));
 app.use(bodyParser.json());
 
 // Rutas
