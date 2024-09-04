@@ -30,7 +30,7 @@ const Home = () => {
 
     const fetchVideos = async () => {
       try {
-        const response = await fetch('https://kids-qcx9a7ah2-cueva91s-projects.vercel.app/api/videos');
+        const response = await fetch('https://kids-nine.vercel.app/api/videos');
         const data = await response.json();
         const sortedVideos = data.slice(-9).reverse(); // Obtener los últimos 9 videos y ordenarlos del más nuevo al más viejo
         setVideos(sortedVideos);
