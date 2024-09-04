@@ -1,3 +1,7 @@
 {
-    "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
-}
+    "routes": [
+      { "src": "/api/videos", "dest": "https://kids-qcx9a7ah2-cueva91s-projects.vercel.app/api/videos" },
+      { "src": "/[^.]+", "dest": "/", "status": 200 }
+    ]
+  }
+  

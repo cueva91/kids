@@ -8,7 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'https://abckidslearning.com',
+  origin: 'https://abckidslearning.com',  // Reemplaza con el dominio de tu sitio web
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP que deseas permitir
   credentials: true
 }));
 app.use(bodyParser.json());
