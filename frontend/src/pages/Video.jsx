@@ -13,7 +13,7 @@ const Video = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/videos');
+        const response = await fetch('https://kids-nine.vercel.app/api/videos');
         const data = await response.json();
         const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Ordenar por fecha de creación
         setVideos(sortedVideos);
@@ -129,7 +129,7 @@ const Video = () => {
         </div>
 
         <div className="text-center">
-          <h2 className="text-[1.5rem] md:text-[2rem] font-bold mt-6 mb-8 font-comic-neue font-regular">TODOS LOS VIDEOS</h2>
+          <h2 className="text-[1.5rem] md:text-[2rem] mt-6 mb-8 font-comic-neue font-regular">TODOS LOS VIDEOS</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 px-4 md:px-8 lg:px-16 mb-[10rem] md:mb-[15rem] lg:mb-[20rem]">
