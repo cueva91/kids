@@ -26,6 +26,10 @@ const GamePlayer = () => {
     }
   };
 
+  const handleTouchMove = (e) => {
+    e.preventDefault(); // Evitar el desplazamiento de la pantalla durante la interacción táctil
+  };
+
   const handleTouchEnd = (index) => {
     if (touchingNumber !== null) {
       updateNumbers(index, touchingNumber);
@@ -97,6 +101,7 @@ const GamePlayer = () => {
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => handleDrop(index)}
               onTouchStart={() => handleTouchStart(number)}
+              onTouchMove={handleTouchMove}
               onTouchEnd={() => handleTouchEnd(index)}
               onMouseEnter={playSound}
               className="bg-white text-lg sm:text-2xl font-comic-neue font-regular text-blue-800 p-2 sm:p-4 rounded-full shadow-lg cursor-pointer transform transition duration-300 hover:scale-110"
