@@ -6,53 +6,27 @@ import winnerSound from '../assets/sound/soundwinner.mp3';
 
 const GamePlayer = () => {
   const [numbers, setNumbers] = useState(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
-  const [draggingNumber, setDraggingNumber] = useState(null);
-  const [touchingIndex, setTouchingIndex] = useState(null);
+  const [selectedNumber, setSelectedNumber] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  // Funciones para el arrastre (desktop)
-  const handleDragStart = (number) => {
-    setDraggingNumber(number);
-  };
+  const handleNumberClick = (number) => {
+    // Si ya hay un número seleccionado, intercambia las posiciones
+    if (selectedNumber !== null) {
+      const newNumbers = [...numbers];
+      const fromIndex = newNumbers.indexOf(selectedNumber);
+      const toIndex = newNumbers.indexOf(number);
 
-  const handleDrop = (index) => {
-    if (draggingNumber !== null) {
-      updateNumbers(index, draggingNumber);
-      setDraggingNumber(null);
+      // Intercambiar los números seleccionados
+      [newNumbers[fromIndex], newNumbers[toIndex]] = [newNumbers[toIndex], newNumbers[fromIndex]];
+      setNumbers(newNumbers);
+      setSelectedNumber(null); // Deseleccionar el número
+    } else {
+      // Si no hay un número seleccionado, selecciona el número tocado
+      setSelectedNumber(number);
     }
   };
 
-  // Funciones para touch (móvil)
-  const handleTouchStart = (index) => {
-    setTouchingIndex(index);
-  };
-
-  const handleTouchMove = (e) => {
-    e.preventDefault(); // Evita el desplazamiento mientras se arrastra
-  };
-
-  const handleTouchEnd = (index) => {
-    if (touchingIndex !== null) {
-      const number = numbers[touchingIndex];
-      updateNumbers(index, number);
-      setTouchingIndex(null);
-    }
-  };
-
-  // Actualiza el arreglo de números
-  const updateNumbers = (index, number) => {
-    const newNumbers = [...numbers];
-    const currentIndex = newNumbers.indexOf(number);
-
-    // Remover el número de su posición original y agregarlo a la nueva posición
-    newNumbers.splice(currentIndex, 1);
-    newNumbers.splice(index, 0, number);
-
-    setNumbers(newNumbers);
-  };
-
-  // Verifica si el orden de los números es correcto
   const checkOrder = () => {
     if (numbers.join('') === '12345678910') {
       playWinnerSound();
@@ -75,6 +49,7 @@ const GamePlayer = () => {
   const handleRestart = () => {
     setShowModal(false);
     setNumbers(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+    setSelectedNumber(null); // Deselecciona cualquier número
   };
 
   const handleBack = () => {
@@ -102,15 +77,11 @@ const GamePlayer = () => {
           {numbers.map((number, index) => (
             <div
               key={index}
-              draggable
-              onDragStart={() => handleDragStart(number)}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={() => handleDrop(index)}
-              onTouchStart={() => handleTouchStart(index)}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={() => handleTouchEnd(index)}
+              onClick={() => handleNumberClick(number)}
               onMouseEnter={playSound}
-              className="bg-white text-lg sm:text-2xl font-comic-neue font-regular text-blue-800 p-2 sm:p-4 rounded-full shadow-lg cursor-pointer transform transition duration-300 hover:scale-110"
+              className={`bg-white text-lg sm:text-2xl font-comic-neue font-regular text-blue-800 p-2 sm:p-4 rounded-full shadow-lg cursor-pointer transform transition duration-300 hover:scale-110 ${
+                selectedNumber === number ? 'bg-yellow-300' : ''
+              }`}
             >
               {number}
             </div>
