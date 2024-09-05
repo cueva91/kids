@@ -68,6 +68,10 @@ const GamePlayer = () => {
       <h2 className="text-3xl sm:text-5xl font-bold text-purple-800 mb-6 sm:mb-8 text-center">
         ¡Diviértete y Aprende!
       </h2>
+
+      <h3 className="text-3xl sm:text-5xl font-bold text-purple-800 mb-6 sm:mb-8 text-center">
+        ¡Toca el numero, despues toca el espacio donde crees que va!
+      </h3>
       
       <main className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md sm:max-w-4xl mt-8 mx-4">
         <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8 font-comic-neue">
