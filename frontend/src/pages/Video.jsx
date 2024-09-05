@@ -13,16 +13,11 @@ const Video = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch('https://kids-nine.vercel.app/api/videos');
+        const response = await fetch('http://localhost:5000/api/videos');
         const data = await response.json();
-        
-        // Filtrar posibles duplicados por ID u otra propiedad única
-        const uniqueVideos = Array.from(new Set(data.map(video => video.id)))
-          .map(id => data.find(video => video.id === id));
-
-        const sortedVideos = uniqueVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Ordenar por fecha de creación
         setVideos(sortedVideos);
-        setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]);
+        setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]); // Seleccionar un video aleatorio
       } catch (error) {
         console.error('Error al cargar los videos:', error);
       }
@@ -37,7 +32,7 @@ const Video = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate('/'); // Navegar a la página de inicio o donde prefieras
   };
 
   const handleThumbnailClick = (videoUrl) => {
@@ -99,7 +94,7 @@ const Video = () => {
             showThumbs={false}
             showStatus={false}
             centerMode={true}
-            centerSlidePercentage={33}  // Ajustar porcentaje para mostrar 3 miniaturas visibles
+            centerSlidePercentage={20}  // Ajustar porcentaje para miniaturas visibles
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
                 <button type="button" onClick={onClickHandler} title={label} className="absolute z-20 left-2 top-1/2 transform -translate-y-1/2">
