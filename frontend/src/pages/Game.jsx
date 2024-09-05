@@ -35,7 +35,7 @@ const Game = () => {
         <div className="bg-yellow-400 p-4 w-full max-w-full">
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4 justify-center sm:justify-start w-full max-w-full">
             <div className="bg-blue-800 text-white p-4 rounded-full text-center font-comic-neue font-bold text-3xl">ABC kids learning</div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-center sm:text-left">JUEGOS</h1>
+            <h1 className="text-3xl sm:text-4xl font-comic-neue font-bold text-center sm:text-left">JUEGOS</h1>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 w-full max-w-full">

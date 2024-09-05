@@ -136,7 +136,7 @@ const Home = () => {
       {/* Sección de contenido */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
         <div className="text-center mt-4 mb-4 md:mt-8 md:mb-8">
-          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl font-extrabold text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-regular">
+          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-regular">
             🎥 Videos impresionantes para niños!
           </div>
         </div>
