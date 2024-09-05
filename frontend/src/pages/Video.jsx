@@ -93,7 +93,8 @@ const Video = () => {
             infiniteLoop={true}
             showThumbs={false}
             showStatus={false}
-            centerMode={false} // Desactivar centerMode para evitar mostrar múltiples slides
+            centerMode={true}  // Mantener centerMode activado para mostrar miniaturas
+            centerSlidePercentage={33}  // Ajustar porcentaje para mostrar 3 miniaturas visibles
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
                 <button type="button" onClick={onClickHandler} title={label} className="absolute z-20 left-2 top-1/2 transform -translate-y-1/2">
