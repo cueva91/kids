@@ -61,12 +61,12 @@ const UploadVideoPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 p-4">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 font-comic">Subir un Nuevo Video</h1>
+          <h1 className="text-3xl font-bold text-gray-800 font-comic-neue font-bold">Subir un Nuevo Video</h1>
         </header>
 
         <section className="mb-8">
           <div className="text-center">
-            <h2 className="text-xl font-bold mt-4 text-gray-700 font-comic">Subir Video</h2>
+            <h2 className="text-xl font-bold mt-4 text-gray-700 font-comic-neue font-regular">Subir Video</h2>
             <div className="w-full p-4">
               <div className="mb-4">
                 <input
@@ -74,18 +74,18 @@ const UploadVideoPage = () => {
                   value={url}
                   onChange={handleUrlChange}
                   placeholder="Ingrese URL del video de YouTube"
-                  className="border border-gray-300 p-2 w-full rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic"
+                  className="border border-gray-300 p-2 w-full rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue font-regular"
                 />
                 <input
                   type="text"
                   value={title}
                   onChange={handleTitleChange}
                   placeholder="Ingrese el título del video"
-                  className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic"
+                  className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue font-regular"
                 />
                 <button
                   onClick={handleEmbedVideo}
-                  className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic"
+                  className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic-neue font-regular"
                 >
                   Incrustar Video
                 </button>

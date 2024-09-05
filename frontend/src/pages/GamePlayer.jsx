@@ -85,7 +85,7 @@ const GamePlayer = () => {
       </h2>
       
       <main className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md sm:max-w-4xl mt-8 mx-4">
-        <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8 font-comic">
+        <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8 font-comic-neue">
           ¡Organiza los números del 1 al 10!
         </h1>
         <div className="grid grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
@@ -99,7 +99,7 @@ const GamePlayer = () => {
               onTouchStart={() => handleTouchStart(number)}
               onTouchEnd={() => handleTouchEnd(index)}
               onMouseEnter={playSound}
-              className="bg-white text-lg sm:text-2xl font-comic text-blue-800 p-2 sm:p-4 rounded-full shadow-lg cursor-pointer transform transition duration-300 hover:scale-110"
+              className="bg-white text-lg sm:text-2xl font-comic-neue font-regular text-blue-800 p-2 sm:p-4 rounded-full shadow-lg cursor-pointer transform transition duration-300 hover:scale-110"
             >
               {number}
             </div>
@@ -107,7 +107,7 @@ const GamePlayer = () => {
         </div>
         <button
           onClick={checkOrder}
-          className="bg-green-500 text-white text-lg sm:text-xl font-comic py-2 sm:py-3 px-6 sm:px-8 rounded-lg shadow-lg hover:bg-green-600 transition duration-300"
+          className="bg-green-500 text-white text-lg sm:text-xl font-comic-neue font-regular py-2 sm:py-3 px-6 sm:px-8 rounded-lg shadow-lg hover:bg-green-600 transition duration-300"
         >
           Verificar Orden
         </button>
@@ -116,7 +116,7 @@ const GamePlayer = () => {
       {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-lg sm:text-xl font-comic py-2 sm:py-3 px-4 sm:px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-lg sm:text-xl font-comic-neue font-regular py-2 sm:py-3 px-4 sm:px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>

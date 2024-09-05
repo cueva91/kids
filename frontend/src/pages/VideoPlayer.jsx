@@ -13,7 +13,7 @@ const VideoPlayer = () => {
     <div className="bg-yellow-400 min-h-screen flex flex-col items-center">
       <header className="w-full bg-blue-500 p-4 flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center space-x-4 mb-2 sm:mb-0 mt-0">
-          <div className="bg-blue-800 text-white p-2 sm:p-4 rounded-full text-center font-comic font-bold text-xl sm:text-3xl">
+          <div className="bg-blue-800 text-white p-2 sm:p-4 rounded-full text-center font-comic-neue font-bold text-xl sm:text-3xl">
             ABC kids learning
           </div>
           <div className="flex space-x-4 text-white">
@@ -47,7 +47,7 @@ const VideoPlayer = () => {
       {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-lg sm:text-xl font-comic py-2 px-4 sm:px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-lg sm:text-xl font-comic-neue font-regular py-2 px-4 sm:px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>

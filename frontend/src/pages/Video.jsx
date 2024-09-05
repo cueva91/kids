@@ -51,17 +51,17 @@ const Video = () => {
 
           <div className="absolute top-0 left-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4 p-4 z-30 w-full justify-between">
             <div className="flex flex-col items-center md:flex-row md:items-center justify-center w-full md:justify-start md:w-auto">
-              <div className="bg-blue-800 text-white p-2 md:p-4 text-xl md:text-3xl rounded-full text-center font-comic font-bold">
+              <div className="bg-blue-800 text-white p-2 md:p-4 text-xl md:text-3xl rounded-full text-center font-comic-neue font-bold">
                 ABC kids learning
               </div>
               <div className="flex space-x-2 justify-center w-full md:ml-4 mb-4 md:mb-0">
                 <Link to="/game">
-                  <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic text-sm md:text-base">
+                  <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic-neue font-regular text-sm md:text-base">
                     Juegos
                   </button>
                 </Link>
                 <Link to="/video">
-                  <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic text-sm md:text-base">
+                  <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic-neue font-regular text-sm md:text-base">
                     Videos
                   </button>
                 </Link>
@@ -129,7 +129,7 @@ const Video = () => {
         </div>
 
         <div className="text-center">
-          <h2 className="text-[1.5rem] md:text-[2rem] font-bold mt-6 mb-8 font-comic">TODOS LOS VIDEOS</h2>
+          <h2 className="text-[1.5rem] md:text-[2rem] font-bold mt-6 mb-8 font-comic-neue font-regular">TODOS LOS VIDEOS</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 px-4 md:px-8 lg:px-16 mb-[10rem] md:mb-[15rem] lg:mb-[20rem]">
@@ -144,7 +144,7 @@ const Video = () => {
                   />
                 </div>
               </Link>
-              <p className="mt-2 text-center text-white text-xs md:text-sm font-comic">{video.title}</p>
+              <p className="mt-2 text-center text-white text-xs md:text-sm font-comic-neue font-regular">{video.title}</p>
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ const Video = () => {
       {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-sm md:text-lg lg:text-xl font-comic py-2 px-4 md:py-2 md:px-6 lg:py-2 lg:px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-sm md:text-lg lg:text-xl font-comic-neue font-regular py-2 px-4 md:py-2 md:px-6 lg:py-2 lg:px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>

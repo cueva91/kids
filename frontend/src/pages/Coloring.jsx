@@ -36,7 +36,7 @@ const Coloring = () => {
   return (
     <div className="font-sans bg-gray-100 min-h-screen">
       <header className="bg-[#0d9488] p-4 flex flex-col sm:flex-row justify-between items-center border-b border-gray-300">
-      <div className="bg-blue-800 text-white p-4 rounded-full text-center font-comic font-bold text-3xl">ABC kids learning</div>
+      <div className="bg-blue-800 text-white p-4 rounded-full text-center font-comic-neue font-bold text-3xl">ABC kids learning</div>
         <nav className="flex space-x-4">
           <a href="#" className="text-gray-800 hover:text-blue-500">APPS</a>
           <a href="#" className="text-gray-800 hover:text-blue-500">SHOP</a>
@@ -53,7 +53,7 @@ const Coloring = () => {
         </p>
         {/* Botones de JUEGOS y VIDEOS */}
         <Link to="/game">
-          <button className="bg-pink-500 text-white py-2 px-4 rounded font-comic mb-4">
+          <button className="bg-pink-500 text-white py-2 px-4 rounded font-comic-neue font-regular mb-4">
             🎮 GAMES
           </button>
         </Link>
@@ -73,7 +73,7 @@ const Coloring = () => {
       {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-xl font-comic py-2 px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-xl font-comic-neue font-regular py-2 px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>

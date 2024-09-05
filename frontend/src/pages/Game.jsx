@@ -34,7 +34,7 @@ const Game = () => {
 
         <div className="bg-yellow-400 p-4 w-full max-w-full">
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4 justify-center sm:justify-start w-full max-w-full">
-            <div className="bg-blue-800 text-white p-4 rounded-full text-center font-comic font-bold text-3xl">ABC kids learning</div>
+            <div className="bg-blue-800 text-white p-4 rounded-full text-center font-comic-neue font-bold text-3xl">ABC kids learning</div>
             <h1 className="text-3xl sm:text-4xl font-bold text-center sm:text-left">JUEGOS</h1>
           </div>
 
@@ -87,7 +87,7 @@ const Game = () => {
       {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-xl font-comic py-2 px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-xl font-comic-neue font-regular py-2 px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>

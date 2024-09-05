@@ -120,13 +120,13 @@ const Home = () => {
         {/* Botones de JUEGOS y VIDEOS */}
         <div className="flex justify-around w-full mt-4 md:mt-0">
           <Link to="/game">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 JUEGOS
             </button>
           </Link>
 
           <Link to="/video">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎨 VIDEOS
             </button>
           </Link>
@@ -136,7 +136,7 @@ const Home = () => {
       {/* Sección de contenido */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
         <div className="text-center mt-4 mb-4 md:mt-8 md:mb-8">
-          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl font-extrabold text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic">
+          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl font-extrabold text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-regular">
             🎥 Videos impresionantes para niños!
           </div>
         </div>
@@ -157,14 +157,14 @@ const Home = () => {
                     alt={`Video ${index + 1}`}
                     className="w-full h-24 md:h-28 object-cover"
                   />
-                  <div className="mt-2 text-white text-center text-sm md:text-base font-comic">{video.title}</div>
+                  <div className="mt-2 text-white text-center text-sm md:text-base font-comic-neue font-regular">{video.title}</div>
                 </Link>
               </div>
             ))}
             {/* Botón centrado */}
             <div className="col-span-2 md:col-span-3 flex justify-center mt-8 md:mt-14">
               <Link to="/video">
-                <button className="bg-blue-500 text-xl md:text-3xl text-white px-20 md:px-36 py-4 md:py-8 rounded transform transition-transform duration-300 hover:scale-110 hover:bg-blue-600 shadow-lg hover:shadow-blue-500 font-comic">
+                <button className="bg-blue-500 text-xl md:text-3xl text-white px-20 md:px-36 py-4 md:py-8 rounded transform transition-transform duration-300 hover:scale-110 hover:bg-blue-600 shadow-lg hover:shadow-blue-500 font-comic-neue font-regular">
                   🎥 TODOS LOS VIDEOS
                 </button>
               </Link>
