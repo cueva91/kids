@@ -7,7 +7,6 @@ import rightArrow from '../assets/images/right-arrow.png';
 
 const Video = () => {
   const [videos, setVideos] = useState([]);
-  const [randomVideo, setRandomVideo] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +16,6 @@ const Video = () => {
         const data = await response.json();
         const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Ordenar por fecha de creación
         setVideos(sortedVideos);
-        setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]); // Seleccionar un video aleatorio
       } catch (error) {
         console.error('Error al cargar los videos:', error);
       }
@@ -32,7 +30,7 @@ const Video = () => {
   };
 
   const handleBack = () => {
-    navigate('/'); // Navegar a la página de inicio o donde prefieras
+    navigate('/');
   };
 
   const handleThumbnailClick = (videoUrl) => {
@@ -68,19 +66,6 @@ const Video = () => {
               </div>
             </div>
           </div>
-
-          {/* Foreground Image with Random Video */}
-          {randomVideo && (
-            <div className="absolute inset-0 flex justify-center items-center z-10 mt-16 md:mt-32">
-              <Link to={`/video-player/${encodeURIComponent(randomVideo.url)}`}>
-                <img
-                  src={extractThumbnail(randomVideo.url)}
-                  alt="Random Video"
-                  className="coloring-image mt-6 w-[14rem] md:w-[20rem] lg:w-[26rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105"
-                />
-              </Link>
-            </div>
-          )}
         </div>
       </header>
 
