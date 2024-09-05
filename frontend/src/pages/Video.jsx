@@ -15,9 +15,9 @@ const Video = () => {
       try {
         const response = await fetch('https://kids-nine.vercel.app/api/videos');
         const data = await response.json();
-        const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Ordenar por fecha de creación
+        const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setVideos(sortedVideos);
-        setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]); // Seleccionar un video aleatorio
+        setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]);
       } catch (error) {
         console.error('Error al cargar los videos:', error);
       }
@@ -32,7 +32,7 @@ const Video = () => {
   };
 
   const handleBack = () => {
-    navigate('/'); // Navegar a la página de inicio o donde prefieras
+    navigate('/');
   };
 
   const handleThumbnailClick = (videoUrl) => {
@@ -93,8 +93,7 @@ const Video = () => {
             infiniteLoop={true}
             showThumbs={false}
             showStatus={false}
-            centerMode={true}
-            centerSlidePercentage={20}  // Ajustar porcentaje para miniaturas visibles
+            centerMode={false} // Desactivar centerMode para evitar mostrar múltiples slides
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
                 <button type="button" onClick={onClickHandler} title={label} className="absolute z-20 left-2 top-1/2 transform -translate-y-1/2">
