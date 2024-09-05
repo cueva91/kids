@@ -15,7 +15,12 @@ const Video = () => {
       try {
         const response = await fetch('https://kids-nine.vercel.app/api/videos');
         const data = await response.json();
-        const sortedVideos = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        // Filtrar posibles duplicados por ID u otra propiedad única
+        const uniqueVideos = Array.from(new Set(data.map(video => video.id)))
+          .map(id => data.find(video => video.id === id));
+
+        const sortedVideos = uniqueVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setVideos(sortedVideos);
         setRandomVideo(sortedVideos[Math.floor(Math.random() * sortedVideos.length)]);
       } catch (error) {
@@ -93,7 +98,7 @@ const Video = () => {
             infiniteLoop={true}
             showThumbs={false}
             showStatus={false}
-            centerMode={true}  // Mantener centerMode activado para mostrar miniaturas
+            centerMode={true}
             centerSlidePercentage={33}  // Ajustar porcentaje para mostrar 3 miniaturas visibles
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
