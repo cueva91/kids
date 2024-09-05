@@ -171,14 +171,11 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Enlace centrado para coloring */}
-          <div className="col-span-2 md:col-span-3 flex justify-center mt-8 md:mt-14">
-            <Link to="/coloring">
-              <div className="bg-white w-full max-w-xs md:max-w-[30rem] h-[30rem] md:h-[45rem]">
-                <img src="sectioncoloring.png" alt="Neighbor Day" className="w-full h-[30rem] md:h-[45rem]" />
-              </div>
-            </Link>
-          </div>
+          <Link to="/coloring">
+            <div className="bg-white w-full md:w-[30rem] h-[30rem] md:h-[45rem] mt-8 md:ml-24 md:mr-12">
+              <img src="sectioncoloring.png" alt="Neighbor Day" className="w-full h-[30rem] md:h-[45rem]" />
+            </div>
+          </Link>
         </div>
       </div>
 
