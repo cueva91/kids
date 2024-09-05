@@ -60,9 +60,9 @@ const Video = () => {
                     Juegos
                   </button>
                 </Link>
-                <Link to="/video">
+                <Link to="/coloring">
                   <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic-neue font-regular text-sm md:text-base">
-                    Videos
+                    Colorear
                   </button>
                 </Link>
               </div>
