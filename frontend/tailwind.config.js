@@ -7,7 +7,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        comic: ['Comic Sans MS', 'cursive', 'sans-serif'],
+        'comic-neue': ['"Comic Neue"', 'cursive'],  // Agrega la fuente Comic Neue
+      },
+      fontWeight: {
+        'light': 300,
+        'regular': 400,
+        'bold': 700,
       },
     },
   },

@@ -66,7 +66,7 @@ const Home = () => {
       {/* Banner de PBS KIDS */}
       <div className="bg-blue-900 text-white flex justify-center items-center py-4 md:py-6">
         <div className="text-center">
-          <div className="text-3xl md:text-4xl font-comic">ABC kids learning</div>
+          <div className="text-3xl md:text-4xl font-comic-neue font-bold">ABC kids learning</div>
         </div>
       </div>
 
