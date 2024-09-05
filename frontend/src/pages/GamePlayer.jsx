@@ -7,16 +7,13 @@ import winnerSound from '../assets/sound/soundwinner.mp3';
 const GamePlayer = () => {
   const [numbers, setNumbers] = useState(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
   const [draggingNumber, setDraggingNumber] = useState(null);
-  const [touchingNumber, setTouchingNumber] = useState(null);
+  const [touchingIndex, setTouchingIndex] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
+  // Funciones para el arrastre (desktop)
   const handleDragStart = (number) => {
     setDraggingNumber(number);
-  };
-
-  const handleTouchStart = (number) => {
-    setTouchingNumber(number);
   };
 
   const handleDrop = (index) => {
@@ -26,27 +23,36 @@ const GamePlayer = () => {
     }
   };
 
+  // Funciones para touch (móvil)
+  const handleTouchStart = (index) => {
+    setTouchingIndex(index);
+  };
+
   const handleTouchMove = (e) => {
-    e.preventDefault(); // Evitar el desplazamiento de la pantalla durante la interacción táctil
+    e.preventDefault(); // Evita el desplazamiento mientras se arrastra
   };
 
   const handleTouchEnd = (index) => {
-    if (touchingNumber !== null) {
-      updateNumbers(index, touchingNumber);
-      setTouchingNumber(null);
+    if (touchingIndex !== null) {
+      const number = numbers[touchingIndex];
+      updateNumbers(index, number);
+      setTouchingIndex(null);
     }
   };
 
+  // Actualiza el arreglo de números
   const updateNumbers = (index, number) => {
     const newNumbers = [...numbers];
     const currentIndex = newNumbers.indexOf(number);
 
+    // Remover el número de su posición original y agregarlo a la nueva posición
     newNumbers.splice(currentIndex, 1);
     newNumbers.splice(index, 0, number);
 
     setNumbers(newNumbers);
   };
 
+  // Verifica si el orden de los números es correcto
   const checkOrder = () => {
     if (numbers.join('') === '12345678910') {
       playWinnerSound();
@@ -100,7 +106,7 @@ const GamePlayer = () => {
               onDragStart={() => handleDragStart(number)}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => handleDrop(index)}
-              onTouchStart={() => handleTouchStart(number)}
+              onTouchStart={() => handleTouchStart(index)}
               onTouchMove={handleTouchMove}
               onTouchEnd={() => handleTouchEnd(index)}
               onMouseEnter={playSound}
