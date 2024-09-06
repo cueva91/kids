@@ -71,7 +71,7 @@ const Home = () => {
       </div>
 
       {/* Sección del banner con abejas */}
-      <div className="relative flex flex-col items-center justify-center py-4 h-[25rem] md:h-[38rem] overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
         {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
@@ -84,27 +84,27 @@ const Home = () => {
           <img
             src="bee.png"
             alt="Abeja volando en el banner educativo"
-            className="bee1 absolute w-8 md:w-12 h-8 md:h-12 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
+            className="bee1 absolute w-6 md:w-12 h-6 md:h-12 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
           />
           <img
             src="bee.png"
             alt="Abeja animada en el banner para niños"
-            className="bee3 absolute w-8 md:w-12 h-8 md:h-12 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
+            className="bee3 absolute w-6 md:w-12 h-6 md:h-12 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
           />
           <img
             src="bee.png"
             alt="Abeja volando para interactuar con niños"
-            className="bee2 absolute w-8 md:w-12 h-8 md:h-12 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
+            className="bee2 absolute w-6 md:w-12 h-6 md:h-12 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
           />
           <img
             src="bee.png"
             alt="Abeja animada en banner interactivo"
-            className="bee4 absolute w-8 md:w-12 h-8 md:h-12 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
+            className="bee4 absolute w-6 md:w-12 h-6 md:h-12 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
           />
           <img
             src="bee.png"
             alt="Abeja interactiva en sitio web infantil"
-            className="bee5 absolute w-8 md:w-12 h-8 md:h-12 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
+            className="bee5 absolute w-6 md:w-12 h-6 md:h-12 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
           />
         </div>
 
@@ -113,20 +113,20 @@ const Home = () => {
           <img
             src="imgcolor.png"
             alt="Juego de colorear educativo para niños"
-            className="coloring-image w-48 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 mx-auto z-10 relative"
+            className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 mx-auto z-10 relative"
           />
         </Link>
 
         {/* Botones de JUEGOS y VIDEOS */}
         <div className="flex justify-around w-full mt-4 md:mt-0">
           <Link to="/game">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
             </button>
           </Link>
 
           <Link to="/video">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎨 Videos
             </button>
           </Link>
@@ -155,16 +155,16 @@ const Home = () => {
                   <img
                     src={extractThumbnail(video.url)}
                     alt={`Video educativo ${index + 1} para niños`}
-                    className="w-full h-24 md:h-28 object-cover"
+                    className="w-full h-20 md:h-28 object-cover"
                   />
-                  <div className="mt-2 text-white text-center text-sm md:text-base font-comic-neue font-regular">{video.title}</div>
+                  <div className="mt-2 text-white text-center text-xs md:text-base font-comic-neue font-regular">{video.title}</div>
                 </Link>
               </div>
             ))}
             {/* Botón centrado */}
             <div className="col-span-2 md:col-span-3 flex justify-center mt-8 md:mt-14">
               <Link to="/video">
-                <button className="bg-blue-500 text-xl md:text-3xl text-white px-20 md:px-36 py-4 md:py-8 rounded transform transition-transform duration-300 hover:scale-110 hover:bg-blue-600 shadow-lg hover:shadow-blue-500 font-comic-neue font-regular">
+                <button className="bg-blue-500 text-xl md:text-3xl text-white px-16 md:px-36 py-4 md:py-8 rounded transform transition-transform duration-300 hover:scale-110 hover:bg-blue-600 shadow-lg hover:shadow-blue-500 font-comic-neue font-regular">
                   🎥 TODOS LOS VIDEOS
                 </button>
               </Link>
@@ -172,8 +172,8 @@ const Home = () => {
           </div>
 
           <Link to="/coloring">
-            <div className="bg-white w-full md:w-[30rem] h-[30rem] md:h-[45rem] mt-8 md:ml-24 md:mr-12">
-              <img src="sectioncoloring.png" alt="Juegos de colorear para niños" className="w-full h-[30rem] md:h-[45rem]" />
+            <div className="bg-white w-full md:w-[30rem] h-[25rem] md:h-[45rem] mt-8 md:ml-24 md:mr-12">
+              <img src="sectioncoloring.png" alt="Juegos de colorear para niños" className="w-full h-[25rem] md:h-[45rem]" />
             </div>
           </Link>
         </div>
