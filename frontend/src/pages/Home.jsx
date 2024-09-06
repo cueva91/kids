@@ -52,21 +52,21 @@ const Home = () => {
       {/* Sección de encabezado */}
       <div className="bg-teal-600 text-white flex flex-col md:flex-row justify-between items-center p-2 md:px-4 md:py-4">
         <div className="flex flex-col md:flex-row items-center">
-          <button className="bg-red-500 px-4 py-2 rounded mb-2 md:mb-0 md:mr-4">PARENTS</button>
+          <button className="bg-red-500 px-4 py-2 rounded mb-2 md:mb-0 md:mr-4">Padres</button>
           <div className="text-center md:text-left">
-            <button className="bg-blue-500 px-4 py-2 rounded">NEW SHOW</button>
+            <button className="bg-blue-500 px-4 py-2 rounded">Nuevo Show Educativo</button>
             <span className="ml-2 text-sm md:text-base block md:inline">
-              Creative problem-solving is fun with "Lyla in the Loop."{' '}
-              <a href="#" className="underline">Learn More</a>
+              Resuelve problemas con creatividad con "Lyla en el Loop."{' '}
+              <a href="#" className="underline">Aprende Más</a>
             </span>
           </div>
         </div>
       </div>
 
-      {/* Banner de PBS KIDS */}
+      {/* Banner optimizado con palabra clave "ABC Kids Learning" */}
       <div className="bg-blue-900 text-white flex justify-center items-center py-4 md:py-6">
         <div className="text-center">
-          <div className="text-3xl md:text-4xl font-comic-neue font-bold">ABC kids learning</div>
+          <div className="text-3xl md:text-4xl font-comic-neue font-bold">ABC Kids Learning</div>
         </div>
       </div>
 
@@ -74,8 +74,8 @@ const Home = () => {
       <div className="relative flex flex-col items-center justify-center py-4 h-[25rem] md:h-[38rem] overflow-hidden">
         {/* Imagen de fondo del banner */}
         <img
-          src="banner2.jpg" // Reemplaza con la ruta de tu imagen de fondo
-          alt="Background Banner"
+          src="banner2.jpg"
+          alt="Aprendizaje para niños - Fondo"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
@@ -83,27 +83,27 @@ const Home = () => {
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
           <img
             src="bee.png"
-            alt="Flying Bee"
+            alt="Abeja volando en el banner educativo"
             className="bee1 absolute w-8 md:w-12 h-8 md:h-12 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
           />
           <img
             src="bee.png"
-            alt="Flying Bee"
+            alt="Abeja animada en el banner para niños"
             className="bee3 absolute w-8 md:w-12 h-8 md:h-12 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
           />
           <img
             src="bee.png"
-            alt="Flying Bee"
+            alt="Abeja volando para interactuar con niños"
             className="bee2 absolute w-8 md:w-12 h-8 md:h-12 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
           />
           <img
             src="bee.png"
-            alt="Flying Bee"
+            alt="Abeja animada en banner interactivo"
             className="bee4 absolute w-8 md:w-12 h-8 md:h-12 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
           />
           <img
             src="bee.png"
-            alt="Flying Bee"
+            alt="Abeja interactiva en sitio web infantil"
             className="bee5 absolute w-8 md:w-12 h-8 md:h-12 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
           />
         </div>
@@ -112,7 +112,7 @@ const Home = () => {
         <Link to="/coloring">
           <img
             src="imgcolor.png"
-            alt="Road Repair show image"
+            alt="Juego de colorear educativo para niños"
             className="coloring-image w-48 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 mx-auto z-10 relative"
           />
         </Link>
@@ -121,23 +121,23 @@ const Home = () => {
         <div className="flex justify-around w-full mt-4 md:mt-0">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎮 JUEGOS
+              🎮 Juegos
             </button>
           </Link>
 
           <Link to="/video">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-6 py-4 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎨 VIDEOS
+              🎨 Videos
             </button>
           </Link>
         </div>
       </div>
 
-      {/* Sección de contenido */}
+      {/* Sección de contenido optimizada */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
         <div className="text-center mt-4 mb-4 md:mt-8 md:mb-8">
           <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-regular">
-            🎥 Videos impresionantes para niños!
+            🎥 ¡Videos Educativos Impresionantes para Niños!
           </div>
         </div>
 
@@ -154,7 +154,7 @@ const Home = () => {
                 <Link to={`/video-player/${encodeURIComponent(video.url)}`}>
                   <img
                     src={extractThumbnail(video.url)}
-                    alt={`Video ${index + 1}`}
+                    alt={`Video educativo ${index + 1} para niños`}
                     className="w-full h-24 md:h-28 object-cover"
                   />
                   <div className="mt-2 text-white text-center text-sm md:text-base font-comic-neue font-regular">{video.title}</div>
@@ -173,7 +173,7 @@ const Home = () => {
 
           <Link to="/coloring">
             <div className="bg-white w-full md:w-[30rem] h-[30rem] md:h-[45rem] mt-8 md:ml-24 md:mr-12">
-              <img src="sectioncoloring.png" alt="Neighbor Day" className="w-full h-[30rem] md:h-[45rem]" />
+              <img src="sectioncoloring.png" alt="Juegos de colorear para niños" className="w-full h-[30rem] md:h-[45rem]" />
             </div>
           </Link>
         </div>

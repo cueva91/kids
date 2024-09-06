@@ -32,7 +32,7 @@ const Video = () => {
   };
 
   const handleBack = () => {
-    navigate('/'); // Navegar a la página de inicio o donde prefieras
+    navigate('/'); // Navegar a la página de inicio
   };
 
   const handleThumbnailClick = (videoUrl) => {
@@ -45,37 +45,37 @@ const Video = () => {
         <div className="relative w-full">
           <img 
             src="bannervideo.jpg" 
-            alt="Featured Show" 
+            alt="Videos educativos para niños"  // Alt optimizado con palabras clave
             className="w-full h-[40vh] md:h-[60vh] lg:h-[85vh] object-cover"
           />
 
           <div className="absolute top-0 left-0 flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-4 p-4 z-30 w-full justify-between">
             <div className="flex flex-col items-center md:flex-row md:items-center justify-center w-full md:justify-start md:w-auto">
               <div className="bg-blue-800 text-white p-2 md:p-4 text-xl md:text-3xl rounded-full text-center font-comic-neue font-bold">
-                ABC kids learning
+                ABC Kids Learning {/* Título con palabras clave */}
               </div>
               <div className="flex space-x-2 justify-center w-full md:ml-4 mb-4 md:mb-0">
                 <Link to="/game">
                   <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic-neue font-regular text-sm md:text-base">
-                    Juegos
+                    Juegos educativos {/* Texto del botón ajustado */}
                   </button>
                 </Link>
                 <Link to="/coloring">
                   <button className="bg-[#db2777] text-white px-2 md:px-4 py-1 md:py-2 rounded-full font-comic-neue font-regular text-sm md:text-base">
-                    Colorear
+                    Colorear para niños {/* Texto del botón ajustado */}
                   </button>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Foreground Image with Random Video */}
+          {/* Video destacado con imagen en miniatura */}
           {randomVideo && (
             <div className="absolute inset-0 flex justify-center items-center z-10 mt-16 md:mt-32">
               <Link to={`/video-player/${encodeURIComponent(randomVideo.url)}`}>
                 <img
                   src={extractThumbnail(randomVideo.url)}
-                  alt="Random Video"
+                  alt="Video educativo destacado"  // Alt optimizado
                   className="coloring-image mt-6 w-[14rem] md:w-[20rem] lg:w-[26rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105"
                 />
               </Link>
@@ -85,7 +85,7 @@ const Video = () => {
       </header>
 
       <section>
-        {/* Carousel Section */}
+        {/* Sección de carrusel con videos educativos */}
         <div className="bg-white p-4 shadow-lg z-10 relative">
           <Carousel
             showArrows={true}
@@ -98,14 +98,14 @@ const Video = () => {
             renderArrowPrev={(onClickHandler, hasPrev, label) =>
               hasPrev && (
                 <button type="button" onClick={onClickHandler} title={label} className="absolute z-20 left-2 top-1/2 transform -translate-y-1/2">
-                  <img src={leftArrow} alt="left arrow" className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain" />
+                  <img src={leftArrow} alt="Anterior" className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain" />
                 </button>
               )
             }
             renderArrowNext={(onClickHandler, hasNext, label) =>
               hasNext && (
                 <button type="button" onClick={onClickHandler} title={label} className="absolute z-20 right-2 top-1/2 transform -translate-y-1/2">
-                  <img src={rightArrow} alt="right arrow" className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain" />
+                  <img src={rightArrow} alt="Siguiente" className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 object-contain" />
                 </button>
               )
             }
@@ -119,7 +119,7 @@ const Video = () => {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                   <img 
                     src={extractThumbnail(video.url)} 
-                    alt={`Thumbnail for video ${index}`} 
+                    alt={`Miniatura del video ${index}`}  // Alt optimizado
                     className="h-24 md:h-32 lg:h-40 object-cover w-full rounded-lg" 
                   />
                 </div>
@@ -129,7 +129,7 @@ const Video = () => {
         </div>
 
         <div className="text-center">
-          <h2 className="text-[1.5rem] md:text-[2rem] mt-6 mb-8 font-comic-neue font-regular">TODOS LOS VIDEOS</h2>
+          <h2 className="text-[1.5rem] md:text-[2rem] mt-6 mb-8 font-comic-neue font-regular">TODOS LOS VIDEOS EDUCATIVOS</h2> {/* Título optimizado */}
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 px-4 md:px-8 lg:px-16 mb-[10rem] md:mb-[15rem] lg:mb-[20rem]">
@@ -139,7 +139,7 @@ const Video = () => {
                 <div className="relative w-full h-28 bg-black rounded-lg overflow-hidden shadow-md">
                   <img
                     src={extractThumbnail(video.url)}
-                    alt={`Thumbnail for video ${index}`}
+                    alt={`Miniatura del video ${index}`}  // Alt optimizado
                     className="w-full h-28 md:h-32 lg:h-40 object-cover"
                   />
                 </div>
@@ -160,7 +160,8 @@ const Video = () => {
 
       <footer className="text-center py-4 pt-6 bg-green-200">
         <div className='text-black'>
-        Política de privacidad  | Términos de uso | pbskids.org © 2024</div> 
+          Política de privacidad | Términos de uso | ABC Kids Learning © 2024 {/* Ajustado para SEO */}
+        </div> 
       </footer>
     </div>
   );
