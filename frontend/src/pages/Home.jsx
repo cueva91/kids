@@ -75,6 +75,7 @@ const Home = () => {
         {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
+          loading="lazy"  // Carga diferida
           alt="Aprendizaje para niños - Fondo"
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
@@ -112,6 +113,7 @@ const Home = () => {
         <Link to="/coloring">
           <img
             src="imgcolor.png"
+            loading="lazy"  // Carga diferida
             alt="Juego de colorear educativo para niños"
             className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 mx-auto z-10 relative"
           />
@@ -154,6 +156,7 @@ const Home = () => {
                 <Link to={`/video-player/${encodeURIComponent(video.url)}`}>
                   <img
                     src={extractThumbnail(video.url)}
+                    loading="lazy"  // Carga diferida
                     alt={`Video educativo ${index + 1} para niños`}
                     className="w-full h-20 md:h-28 object-cover"
                   />
