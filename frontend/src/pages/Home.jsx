@@ -184,7 +184,7 @@ const Home = () => {
       </div>
 
       {/* Footer ajustado para móviles */}
-      <footer className="bg-green-100 text-center py-2 md:py-4">
+      <footer className="bg-[#A6EF18] text-center py-2 md:py-4">
         <div className="text-sm md:text-base text-black">
           Política de privacidad | Términos de uso | ABC Kids Learning © 2024
         </div>
