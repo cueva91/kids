@@ -82,32 +82,33 @@ const Home = () => {
 
         {/* Abejas animadas */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <img
-            src="bee.png"
-            alt="Abeja volando en el banner educativo"
-            className="bee1 absolute w-6 md:w-12 h-6 md:h-12 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
-          />
-          <img
-            src="bee.png"
-            alt="Abeja animada en el banner para niños"
-            className="bee3 absolute w-6 md:w-12 h-6 md:h-12 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
-          />
-          <img
-            src="bee.png"
-            alt="Abeja volando para interactuar con niños"
-            className="bee2 absolute w-6 md:w-12 h-6 md:h-12 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
-          />
-          <img
-            src="bee.png"
-            alt="Abeja animada en banner interactivo"
-            className="bee4 absolute w-6 md:w-12 h-6 md:h-12 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
-          />
-          <img
-            src="bee.png"
-            alt="Abeja interactiva en sitio web infantil"
-            className="bee5 absolute w-6 md:w-12 h-6 md:h-12 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
-          />
-        </div>
+  <img
+    src="bee.png"
+    alt="Abeja volando en el banner educativo"
+    className="bee1 absolute w-10 md:w-16 h-10 md:h-16 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
+  />
+  <img
+    src="bee.png"
+    alt="Abeja animada en el banner para niños"
+    className="bee3 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
+  />
+  <img
+    src="bee.png"
+    alt="Abeja volando para interactuar con niños"
+    className="bee2 absolute w-10 md:w-16 h-10 md:h-16 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
+  />
+  <img
+    src="bee.png"
+    alt="Abeja animada en banner interactivo"
+    className="bee4 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
+  />
+  <img
+    src="bee.png"
+    alt="Abeja interactiva en sitio web infantil"
+    className="bee5 absolute w-10 md:w-16 h-10 md:h-16 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
+  />
+</div>
+
 
         {/* Imagen en primer plano */}
         <Link to="/coloring">
