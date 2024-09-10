@@ -133,18 +133,19 @@ const Home = () => {
           </Link>
 
           {/* Miniaturas de videos */}
-          <div className="grid grid-cols-2 gap-4 md:w-1/2 px-4">
-            {videos.slice(0, 4).map((video, index) => (
-              <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
-                <img
-                  src={extractThumbnail(video.url)}
-                  alt={`Video educativo ${index + 1}`}
-                  className="w-full h-24 md:h-32 object-cover rounded-lg shadow-md"
-                />
-                <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
-              </Link>
-            ))}
-          </div>
+<div className="grid grid-cols-2 gap-4 md:w-1/2 px-4">
+  {videos.slice(0, 4).map((video, index) => (
+    <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
+      <img
+        src={extractThumbnail(video.url)}
+        alt={`Video educativo ${index + 1}`}
+        className="w-full h-20 md:h-24 object-cover rounded-lg shadow-md transform transition-transform hover:scale-105 hover:shadow-lg"
+        style={{ aspectRatio: "16/9" }} // Esto hace que las miniaturas sean alargadas horizontalmente
+      />
+      <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
+    </Link>
+  ))}
+</div>
         </div>
 
         {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
