@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Importa Helmet
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -49,6 +50,15 @@ const Home = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>ABC Kids Learning - Juegos y Videos Educativos</title>
+        <meta name="description" content="Disfruta de juegos y videos educativos para niños. ABC Kids Learning ayuda a los niños a aprender con creatividad." />
+        <meta name="keywords" content="juegos para niños, videos educativos, aprender jugando, juegos interactivos, creatividad infantil" />
+        <meta name="robots" content="index,follow" />
+        <meta name="author" content="ABC Kids Learning" />
+        <link rel="canonical" href="https://www.tusitio.com" />
+      </Helmet>
+
       {/* Sección de encabezado */}
       <div className="bg-teal-600 text-white flex flex-col md:flex-row justify-between items-center p-2 md:px-4 md:py-4">
         <div className="flex flex-col md:flex-row items-center">
@@ -70,71 +80,88 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Sección del banner con abejas */}
-      <div className="relative flex flex-col items-center justify-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
-        {/* Imagen de fondo del banner */}
-        <img
-          src="banner2.jpg"
-          loading="lazy"  // Carga diferida
-          alt="Aprendizaje para niños - Fondo"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
+      {/* Sección del banner con abejas, botones, y miniaturas de videos */}
+<div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 items-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
+  {/* Imagen de fondo del banner */}
+  <img
+    src="banner2.jpg"
+    loading="lazy"
+    alt="Aprendizaje para niños - Fondo"
+    className="absolute inset-0 w-full h-full object-cover z-0"
+  />
 
-        {/* Abejas animadas */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-  <img
-    src="bee.png"
-    alt="Abeja volando en el banner educativo"
-    className="bee1 absolute w-10 md:w-16 h-10 md:h-16 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
-  />
-  <img
-    src="bee.png"
-    alt="Abeja animada en el banner para niños"
-    className="bee3 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
-  />
-  <img
-    src="bee.png"
-    alt="Abeja volando para interactuar con niños"
-    className="bee2 absolute w-10 md:w-16 h-10 md:h-16 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
-  />
-  <img
-    src="bee.png"
-    alt="Abeja animada en banner interactivo"
-    className="bee4 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
-  />
-  <img
-    src="bee.png"
-    alt="Abeja interactiva en sitio web infantil"
-    className="bee5 absolute w-10 md:w-16 h-10 md:h-16 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
-  />
+  {/* Abejas animadas */}
+  <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+    <img
+      src="bee.png"
+      alt="Abeja volando en el banner educativo"
+      className="bee1 absolute w-10 md:w-16 h-10 md:h-16 top-[15%] md:top-[20%] left-[10%] md:left-[15%] transform scale-x-[-1] z-20"
+    />
+    <img
+      src="bee.png"
+      alt="Abeja animada en el banner para niños"
+      className="bee3 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] left-[5%] md:left-[10%] transform scale-x-[-1] z-20"
+    />
+    <img
+      src="bee.png"
+      alt="Abeja volando para interactuar con niños"
+      className="bee2 absolute w-10 md:w-16 h-10 md:h-16 top-[20%] md:top-[30%] right-[20%] md:right-[25%] z-20"
+    />
+    <img
+      src="bee.png"
+      alt="Abeja animada en banner interactivo"
+      className="bee4 absolute w-10 md:w-16 h-10 md:h-16 bottom-[20%] md:bottom-[30%] right-[5%] md:right-[10%] z-20"
+    />
+    <img
+      src="bee.png"
+      alt="Abeja interactiva en sitio web infantil"
+      className="bee5 absolute w-10 md:w-16 h-10 md:h-16 top-[10%] md:top-[15%] left-[70%] md:left-[80%] z-20"
+    />
+  </div>
+
+  {/* Imagen en primer plano */}
+  <Link to="/coloring" className="w-full flex justify-center">
+    <img
+      src="imgcolor.png"
+      loading="lazy"
+      alt="Juego de colorear educativo para niños"
+      className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10 relative"
+    />
+  </Link>
+
+  {/* Sección de miniaturas de videos y botones */}
+  <div className="flex flex-col items-center z-10 p-4">
+    {/* Miniaturas de video */}
+    <div className="grid grid-cols-2 gap-4 w-full mb-4">
+      {videos.slice(0, 4).map((video, index) => (
+        <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
+          <img
+            src={extractThumbnail(video.url)}
+            alt={`Video educativo ${index + 1}`}
+            className="w-full h-24 md:h-32 object-cover rounded-lg shadow-md"
+          />
+          <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
+        </Link>
+      ))}
+    </div>
+
+    {/* Botones de JUEGOS y VIDEOS */}
+    <div className="flex justify-between w-full mt-4">
+      <Link to="/game">
+        <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+          🎮 Juegos
+        </button>
+      </Link>
+
+      <Link to="/video">
+        <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+          🎨 Videos
+        </button>
+      </Link>
+    </div>
+  </div>
 </div>
 
-
-        {/* Imagen en primer plano */}
-        <Link to="/coloring">
-          <img
-            src="imgcolor.png"
-            loading="lazy"  // Carga diferida
-            alt="Juego de colorear educativo para niños"
-            className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 mx-auto z-10 relative"
-          />
-        </Link>
-
-        {/* Botones de JUEGOS y VIDEOS */}
-        <div className="flex justify-around w-full mt-4 md:mt-0">
-          <Link to="/game">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎮 Juegos
-            </button>
-          </Link>
-
-          <Link to="/video">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎨 Videos
-            </button>
-          </Link>
-        </div>
-      </div>
 
       {/* Sección de contenido optimizada */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
