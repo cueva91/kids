@@ -119,8 +119,8 @@ const Home = () => {
           />
         </div>
 
-        {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full relative z-10">
+        {/* Contenedor de imagen de primer plano y miniaturas, centrado */}
+        <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-[75%] mx-auto relative z-10">
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full flex justify-center md:w-1/2">
             <img
