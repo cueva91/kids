@@ -81,7 +81,7 @@ const Home = () => {
       </div>
 
       {/* Sección del banner con abejas, imagen en primer plano y miniaturas de videos */}
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 items-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
         {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
@@ -120,32 +120,31 @@ const Home = () => {
         </div>
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full relative z-10 ml-24">
-
+        <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-4 md:ml-16">
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full flex justify-center md:w-3/4">
             <img
               src="imgcolor.png"
               loading="lazy"
               alt="Juego de colorear educativo para niños"
-              className="coloring-image w-48 md:w-[40rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
+              className="coloring-image w-48 md:w-[45rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
             />
           </Link>
 
           {/* Miniaturas de videos */}
-<div className="grid grid-cols-2 gap-4 md:w-1/2 px-4">
-  {videos.slice(0, 4).map((video, index) => (
-    <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
-      <img
-        src={extractThumbnail(video.url)}
-        alt={`Video educativo ${index + 1}`}
-        className="w-full h-20 md:h-24 object-cover rounded-lg shadow-md transform transition-transform hover:scale-105 hover:shadow-lg"
-        style={{ aspectRatio: "16/9" }} // Esto hace que las miniaturas sean alargadas horizontalmente
-      />
-      <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
-    </Link>
-  ))}
-</div>
+          <div className="grid grid-cols-2 gap-4 md:w-1/2 px-4">
+            {videos.slice(0, 4).map((video, index) => (
+              <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
+                <img
+                  src={extractThumbnail(video.url)}
+                  alt={`Video educativo ${index + 1}`}
+                  className="w-full h-24 md:h-32 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110 hover:shadow-lg"
+                  style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
+                />
+                <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
