@@ -122,7 +122,7 @@ const Home = () => {
         {/* Contenedor de imagen de primer plano y miniaturas */}
         <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-8 md:ml-16 mr-16">
           {/* Imagen en primer plano */}
-          <Link to="/coloring" className="w-full flex justify-center md:w-3/4">
+          <Link to="/coloring" className="w-full flex justify-center md:w-3/2">
             <img
               src="imgcolor.png"
               loading="lazy"
