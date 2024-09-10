@@ -145,20 +145,18 @@ const Home = () => {
       ))}
     </div>
 
-    {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
-    <div className="w-full flex justify-between items-end">
-            <Link to="/game">
-              <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-                🎮 Juegos
-              </button>
-            </Link>
-
-            <Link to="/video">
-              <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-                🎨 Videos
-              </button>
-            </Link>
-          </div>
+     {/* Botones de JUEGOS y VIDEOS en las esquinas inferiores del banner */}
+     <div className="absolute bottom-0 left-0 right-0 flex justify-between w-full px-4 md:px-8 py-2 z-10">
+          <Link to="/game">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-4 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg">
+              🎮 Juegos
+            </button>
+          </Link>
+          <Link to="/video">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-4 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg">
+              🎨 Videos
+            </button>
+          </Link>
         </div>
       </div>
 
