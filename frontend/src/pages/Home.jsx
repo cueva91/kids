@@ -120,7 +120,7 @@ const Home = () => {
         </div>
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-4 md:ml-16">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-8 md:ml-16">
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full flex justify-center md:w-3/4">
             <img
@@ -132,13 +132,13 @@ const Home = () => {
           </Link>
 
           {/* Miniaturas de videos */}
-          <div className="grid grid-cols-2 gap-4 md:w-1/2 px-4">
+          <div className="grid grid-cols-2 gap-4 md:w-1/2 px-8">
             {videos.slice(0, 4).map((video, index) => (
               <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
                 <img
                   src={extractThumbnail(video.url)}
                   alt={`Video educativo ${index + 1}`}
-                  className="w-full h-24 md:h-32 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110 hover:shadow-lg"
+                  className="w-full h-28 md:h-32 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110 hover:shadow-lg"
                   style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
                 />
                 <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
@@ -148,7 +148,7 @@ const Home = () => {
         </div>
 
         {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
-        <div className="w-full flex justify-between items-end absolute bottom-0 left-0 right-0 px-4 pb-4">
+        <div className="w-full flex justify-between items-end absolute bottom-4 left-0 right-0 px-12 pb-4">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
