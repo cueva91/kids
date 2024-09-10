@@ -129,7 +129,7 @@ const Home = () => {
     />
   </Link>
 
-  {/* Sección de miniaturas de videos y botones */}
+  {/* Sección de miniaturas de videos */}
   <div className="flex flex-col items-center z-10 p-4">
     {/* Miniaturas de video */}
     <div className="grid grid-cols-2 gap-4 w-full mb-4">
@@ -144,8 +144,7 @@ const Home = () => {
         </Link>
       ))}
     </div>
-
-    </div>
+</div>
 
 {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
 <div className="w-full flex justify-between items-end">
