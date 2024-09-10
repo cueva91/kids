@@ -148,7 +148,7 @@ const Home = () => {
         </div>
 
         {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
-        <div className="w-full flex justify-between items-end absolute bottom-8 left-0 right-0 px-12 pb-4">
+        <div className="w-full flex justify-between items-end absolute bottom-4 left-0 right-0 px-12 pb-12 mt-12">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
