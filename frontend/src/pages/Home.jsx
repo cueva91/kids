@@ -120,14 +120,14 @@ const Home = () => {
   </div>
 
   {/* Imagen en primer plano */}
-<Link to="/coloring" className="w-full flex justify-center absolute top-1/4 md:top-1/3">
-  <img
-    src="imgcolor.png"
-    loading="lazy"
-    alt="Juego de colorear educativo para niños"
-    className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10 relative"
-  />
-</Link>
+  <Link to="/coloring" className="w-full flex justify-center">
+    <img
+      src="imgcolor.png"
+      loading="lazy"
+      alt="Juego de colorear educativo para niños"
+      className="coloring-image w-36 md:w-[30rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10 relative"
+    />
+  </Link>
 
   {/* Sección de miniaturas de videos y botones */}
   <div className="flex flex-col items-center z-10 p-4">
