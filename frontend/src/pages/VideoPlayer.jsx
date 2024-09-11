@@ -61,15 +61,15 @@ const VideoPlayer = () => {
       <main className="relative w-full max-w-4xl mt-8 px-4 sm:px-0">
         {/* Contenedor con marco infantil y ajuste de tamaño */}
         <div className="relative p-4 bg-white rounded-lg shadow-lg border-8 border-pink-500 w-full max-w-3xl mx-auto">
-          <div className="relative" style={{ paddingTop: '56.25%' }}>
-            <iframe
-              src={decodeURIComponent(videoUrl)}
-              title="Video Player"
-              frameBorder="0"
-              allowFullScreen
-              className="absolute top-0 left-0 w-full h-full rounded-md"
-            ></iframe>
-          </div>
+        <div className="relative" style={{ paddingTop: '56.25%' }}>
+          <iframe
+            src={`${decodeURIComponent(videoUrl)}?rel=0`}
+            title="Video Player"
+            frameBorder="0"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full rounded-md"
+          ></iframe>
+        </div>
         </div>
 
         {/* Carrusel de videos debajo del reproductor */}
