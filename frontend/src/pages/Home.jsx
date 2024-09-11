@@ -156,9 +156,9 @@ const Home = () => {
       </button>
     </Link>
 
-    <Link to="/video">
+    <Link to="/coloring">
       <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-        🎨 Videos
+        🎨 Pintar
       </button>
     </Link>
   </div>
