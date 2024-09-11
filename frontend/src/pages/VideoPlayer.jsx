@@ -43,7 +43,7 @@ const VideoPlayer = () => {
       <header className="w-full bg-blue-500 p-4 flex flex-col sm:flex-row justify-between items-center">
         <div className="flex items-center space-x-4 mb-2 sm:mb-0 mt-0">
           <div className="bg-blue-800 text-white p-2 sm:p-4 rounded-full text-center font-comic-neue font-bold text-xl sm:text-3xl">
-            ABC Kids Learning
+            ABC kids learning
           </div>
           <div className="flex space-x-4 text-white">
             <Link to="/game" className="flex items-center space-x-1 hover:underline text-sm sm:text-base">
