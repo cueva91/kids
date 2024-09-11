@@ -127,7 +127,7 @@ const Home = () => {
               src="imgcolor.png"
               loading="lazy"
               alt="Juego de colorear educativo para niños"
-              className="coloring-image w-48 md:w-[40rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
+              className="coloring-image w-48 md:w-[40rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10 -mt-8"
             />
           </Link>
 
