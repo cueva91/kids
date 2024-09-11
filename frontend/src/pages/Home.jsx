@@ -81,7 +81,7 @@ const Home = () => {
       </div>
 
       {/* Sección del banner con abejas, imagen en primer plano y miniaturas de videos */}
-      <div className="relative flex flex-col items-center justify-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center py-4 md:py-12 overflow-hidden">
         {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
@@ -120,7 +120,7 @@ const Home = () => {
         </div>
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto relative z-10 space-y-6 md:space-y-0">
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full md:w-1/2 flex justify-center">
             <img
@@ -148,7 +148,7 @@ const Home = () => {
         </div>
 
         {/* Botones de JUEGOS y VIDEOS */}
-        <div className="w-full flex justify-around items-end absolute bottom-0 left-0 right-0 px-12 pb-4">
+        <div className="w-full flex flex-col md:flex-row justify-around items-center mt-8 space-y-4 md:space-y-0 absolute bottom-0 left-0 right-0 px-12 pb-4">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
