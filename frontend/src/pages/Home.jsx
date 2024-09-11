@@ -119,7 +119,7 @@ const Home = () => {
           />
         </div>
 
-        {/* Contenedor de imagen de primer plano y miniaturas */}
+        {/* Contenedor de imagen de primer plano */}
         <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-8 md:ml-16 mr-16">
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full flex justify-center md:w-[34%]">
@@ -138,7 +138,7 @@ const Home = () => {
                 <img
                   src={extractThumbnail(video.url)}
                   alt={`Video educativo ${index + 1}`}
-                  className="w-full h-28 md:h-32 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110 hover:shadow-lg"
+                  className="w-full h-28 md:h-32 object-cover shadow-md transform transition-transform hover:scale-110 hover:shadow-lg"
                   style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
                 />
                 <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
