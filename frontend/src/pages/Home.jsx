@@ -147,21 +147,21 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Botones de JUEGOS y VIDEOS alineados al fondo sin interferencia */}
-        <div className="w-full flex justify-around mt-8 items-end pb-12">
-          <Link to="/game">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎮 Juegos
-            </button>
-          </Link>
+        {/* Botones de JUEGOS y VIDEOS */}
+<div className="w-full flex justify-around items-end absolute bottom-0 left-0 right-0 px-12 pb-4">
+  <Link to="/game">
+    <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+      🎮 Juegos
+    </button>
+  </Link>
 
-          <Link to="/video">
-            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
-              🎨 Videos
-            </button>
-          </Link>
-        </div>
-      </div>
+  <Link to="/video">
+    <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+      🎨 Videos
+    </button>
+  </Link>
+</div>
+</div>
 
       {/* Sección de contenido optimizada */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
