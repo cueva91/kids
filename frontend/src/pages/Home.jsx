@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async'; // Importa Helmet
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -10,30 +10,30 @@ const Home = () => {
     const timeline = gsap.timeline({ repeat: -1, yoyo: true });
 
     timeline.to(".bee1", { x: 10, y: -10, duration: 1 })
-            .to(".bee1", { x: -10, y: 10, duration: 1 })
-            .to(".bee1", { x: 5, y: -5, duration: 1 });
+      .to(".bee1", { x: -10, y: 10, duration: 1 })
+      .to(".bee1", { x: 5, y: -5, duration: 1 });
 
     timeline.to(".bee2", { x: -15, y: 15, duration: 1 })
-            .to(".bee2", { x: 15, y: -15, duration: 1 })
-            .to(".bee2", { x: -10, y: 10, duration: 1 });
+      .to(".bee2", { x: 15, y: -15, duration: 1 })
+      .to(".bee2", { x: -10, y: 10, duration: 1 });
 
     timeline.to(".bee3", { x: 12, y: 12, duration: 1 })
-            .to(".bee3", { x: -12, y: -12, duration: 1 })
-            .to(".bee3", { x: 10, y: 10, duration: 1 });
+      .to(".bee3", { x: -12, y: -12, duration: 1 })
+      .to(".bee3", { x: 10, y: 10, duration: 1 });
 
     timeline.to(".bee4", { x: -12, y: 8, duration: 1 })
-            .to(".bee4", { x: 12, y: -8, duration: 1 })
-            .to(".bee4", { x: -8, y: 12, duration: 1 });
+      .to(".bee4", { x: 12, y: -8, duration: 1 })
+      .to(".bee4", { x: -8, y: 12, duration: 1 });
 
     timeline.to(".bee5", { x: 15, y: -15, duration: 1 })
-            .to(".bee5", { x: -15, y: 15, duration: 1 })
-            .to(".bee5", { x: 10, y: -10, duration: 1 });
+      .to(".bee5", { x: -15, y: 15, duration: 1 })
+      .to(".bee5", { x: 10, y: -10, duration: 1 });
 
     const fetchVideos = async () => {
       try {
         const response = await fetch('https://kids-nine.vercel.app/api/videos');
         const data = await response.json();
-        const sortedVideos = data.slice(-9).reverse(); // Obtener los últimos 9 videos y ordenarlos del más nuevo al más viejo
+        const sortedVideos = data.slice(-9).reverse();
         setVideos(sortedVideos);
       } catch (error) {
         console.error('Error al cargar los videos:', error);
@@ -81,7 +81,7 @@ const Home = () => {
       </div>
 
       {/* Sección del banner con abejas, imagen en primer plano y miniaturas de videos */}
-      <div className="relative flex flex-col items-center justify-center py-4 h-[22rem] md:h-[38rem] overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center py-4 md:py-12 overflow-hidden">
         {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
@@ -120,7 +120,22 @@ const Home = () => {
         </div>
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col items-center md:flex-row justify-between w-full max-w-7xl mx-auto relative z-10 space-y-4 md:space-y-0">
+          {/* Miniaturas de videos (se apilan verticalmente en móviles) */}
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 w-full md:w-1/2 px-4">
+            {videos.slice(0, 4).map((video, index) => (
+              <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
+                <img
+                  src={extractThumbnail(video.url)}
+                  alt={`Video educativo ${index + 1}`}
+                  className="w-full h-28 md:h-32 object-cover shadow-md transform transition-transform hover:scale-110 hover:shadow-lg border-4 border-white"
+                  style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
+                />
+                <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
+              </Link>
+            ))}
+          </div>
+
           {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full md:w-1/2 flex justify-center">
             <img
@@ -130,25 +145,10 @@ const Home = () => {
               className="coloring-image w-48 md:w-[80%] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
             />
           </Link>
-
-          {/* Miniaturas de videos */}
-          <div className="grid grid-cols-2 gap-4 w-full md:w-1/2 px-8">
-            {videos.slice(0, 4).map((video, index) => (
-              <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
-                <img
-                  src={extractThumbnail(video.url)}
-                  alt={`Video educativo ${index + 1}`}
-                  className="w-full h-28 md:h-32 object-cover shadow-md transform transition-transform hover:scale-110 hover:shadow-lg border-4 border-white" // Agregar el borde blanco
-                  style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
-                />
-                <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
-              </Link>
-            ))}
-          </div>
         </div>
 
-        {/* Botones de JUEGOS y VIDEOS */}
-        <div className="w-full flex justify-around items-end absolute bottom-0 left-0 right-0 px-12 pb-4">
+        {/* Botones de JUEGOS y VIDEOS (ubicados en la parte inferior en móviles) */}
+        <div className="w-full flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 mt-8">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
