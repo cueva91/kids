@@ -115,7 +115,7 @@ const Coloring = () => {
         </h1>
 
         {/* Pestañas de categorías ajustadas para móviles y horizontales en tabletas/escritorio */}
-        <div className="grid grid-cols-2 sm:grid-cols-7 mb-6 max-w-full px-4 sm:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-7 mb-6 max-w-full px-4 sm:px-0 font-comic-neue font-bold">
           {Object.keys(categories).map(category => (
             <button
               key={category}
