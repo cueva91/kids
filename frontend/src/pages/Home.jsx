@@ -138,7 +138,7 @@ const Home = () => {
       <img
         src={extractThumbnail(video.url)}
         alt={`Video educativo ${index + 1}`}
-        className="w-full h-28 md:h-32 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110 hover:shadow-lg border-4 border-white" // Agregar el borde blanco
+        className="w-full h-28 md:h-32 object-cover shadow-md transform transition-transform hover:scale-110 hover:shadow-lg border-4 border-white" // Agregar el borde blanco
         style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
       />
       <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
