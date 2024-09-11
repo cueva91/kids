@@ -120,19 +120,19 @@ const Home = () => {
         </div>
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
-        <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-8 md:ml-16 mr-16">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full relative z-10 ml-8 md:ml-16 mr-16 mb-16">
           {/* Imagen en primer plano */}
-          <Link to="/coloring" className="w-full flex justify-center md:w-[55%]">
+          <Link to="/coloring" className="w-full flex justify-center md:w-[50%]">
             <img
               src="imgcolor.png"
               loading="lazy"
               alt="Juego de colorear educativo para niños"
-              className="coloring-image w-48 md:w-[45rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
+              className="coloring-image w-48 md:w-[40rem] border-8 border-white cursor-pointer transition-transform transform hover:scale-105 z-10"
             />
           </Link>
 
           {/* Miniaturas de videos */}
-          <div className="grid grid-cols-2 gap-4 md:w-1/2 px-8">
+          <div className="grid grid-cols-2 gap-4 md:w-[50%] px-8 mt-8 md:mt-0">
             {videos.slice(0, 4).map((video, index) => (
               <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
                 <img
@@ -147,8 +147,8 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Botones de JUEGOS y VIDEOS alineados en las esquinas inferiores */}
-        <div className="w-full flex justify-between items-end absolute bottom-4 left-0 right-0 px-12 pb-12 mt-12">
+        {/* Botones de JUEGOS y VIDEOS alineados al fondo sin interferencia */}
+        <div className="w-full flex justify-around mt-8 items-end pb-12">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎮 Juegos
