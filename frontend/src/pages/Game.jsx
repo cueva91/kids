@@ -40,18 +40,31 @@ const Game = () => {
             <h1 className="text-3xl sm:text-4xl font-comic-neue font-bold text-center sm:text-left">JUEGOS EDUCATIVOS PARA NIÑOS</h1>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4 w-full max-w-full">
-            <div className="relative w-full max-w-full">
+          {/* Juegos con miniaturas ajustadas */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 w-full max-w-full">
+            {/* Primera miniatura que dispara el primer juego */}
+            <div className="relative w-full max-w-xs">
               <Link to="/game-player/1">
-                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-full">
-                  <img src="/miniaturajuego.png" alt="Nuevo juego educativo" className="w-full h-full object-cover" />
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                  <img src="/miniaturajuego.jpg" alt="Nuevo juego educativo" className="w-full h-auto object-cover" />
                   <span className="absolute top-0 left-0 bg-red-600 text-white px-2 py-1">NUEVO</span>
                 </div>
               </Link>
             </div>
-            {[2, 3, 4, 5, 6].map((num) => (
-              <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-full">
-                <img src={`https://placehold.co/180x120`} alt={`Juego educativo ${num}`} className="w-full h-full object-cover" />
+
+            {/* Segunda miniatura que dispara el segundo juego */}
+            <div className="relative w-full max-w-xs">
+              <Link to="/game-player/2">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                  <img src="/miniaturajuego2.jpg" alt="Juego 2" className="w-full h-auto object-cover" />
+                  <span className="absolute top-0 left-0 bg-green-600 text-white px-2 py-1">NUEVO</span>
+                </div>
+              </Link>
+            </div>
+
+            {[2, 3, 4, 5].map((num) => (
+              <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                <img src={`https://placehold.co/180x120`} alt={`Juego educativo ${num}`} className="w-full h-auto object-cover" />
               </div>
             ))}
           </div>
@@ -75,6 +88,7 @@ const Game = () => {
         </div>
       </main>
 
+      {/* Secciones adicionales */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 w-full max-w-full">
         <GameSection title="Juegos Nuevos" color="bg-cyan-500" moreGames="35 más juegos nuevos" />
         <GameSection title="Juegos Populares" color="bg-pink-500" moreGames="114 más juegos populares" />
@@ -105,8 +119,8 @@ const GameSection = ({ title, color, moreGames }) => (
     <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
     <div className="grid grid-cols-2 gap-2 mt-2 w-full max-w-full">
       {[1, 2, 3, 4, 5, 6].map((num) => (
-        <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-full">
-          <img src={`https://placehold.co/150x100`} alt={`${title} ${num}`} className="w-full h-full object-cover" />
+        <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-xs">
+          <img src={`https://placehold.co/150x100`} alt={`${title} ${num}`} className="w-full h-auto object-cover" />
         </div>
       ))}
     </div>
