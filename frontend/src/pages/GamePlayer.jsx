@@ -9,18 +9,18 @@ const vocales = ['A', 'E', 'I', 'O', 'U'];
 const colores = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
 
 const GamePlayer = () => {
-  const { id } = useParams(); // Obtén el id del juego desde la URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [numbers, setNumbers] = useState(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
-  const [score, setScore] = useState(0); // Estado para el juego 2 y 3
-  const [currentNumber, setCurrentNumber] = useState(1); // Estado para el número objetivo en el juego 2
-  const [bubbles, setBubbles] = useState([]); // Burbujas del juego 2
-  const [gameOver, setGameOver] = useState(false); // Estado de fin de juego para el juego 2 y 3
-  const [vocalActual, setVocalActual] = useState(''); // Estado del juego 3 (vocal objetivo)
-  const [posicion, setPosicion] = useState(0); // Posición del carrito en el juego 3
-  const [puntuacion, setPuntuacion] = useState(0); // Puntuación del juego 3
+  const [score, setScore] = useState(0);
+  const [currentNumber, setCurrentNumber] = useState(1);
+  const [bubbles, setBubbles] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
+  const [vocalActual, setVocalActual] = useState('');
+  const [posicion, setPosicion] = useState(0);
+  const [puntuacion, setPuntuacion] = useState(0);
 
   // Lógica para generar una nueva vocal en el juego 3
   useEffect(() => {
@@ -45,23 +45,30 @@ const GamePlayer = () => {
   };
 
   // Lógica para el juego 2: Generar burbujas
-  useEffect(() => {
-    if (id === '2' && !gameOver) {
-      const interval = setInterval(() => {
-        setBubbles(prevBubbles => [
-          ...prevBubbles,
-          {
-            id: Math.random(),
-            number: Math.floor(Math.random() * 10) + 1,
-            x: Math.random() * 80 + 10,
-            y: 100,
-          },
-        ]);
-      }, 2000);
+useEffect(() => {
+  if (id === '2' && !gameOver) {
+    const interval = setInterval(() => {
+      // Genera 2 burbujas en lugar de solo 1 para cada intervalo
+      setBubbles(prevBubbles => [
+        ...prevBubbles,
+        {
+          id: Math.random(),
+          number: Math.floor(Math.random() * 10) + 1,
+          x: Math.random() * 80 + 10,
+          y: 100,
+        },
+        {
+          id: Math.random(),
+          number: Math.floor(Math.random() * 10) + 1,
+          x: Math.random() * 80 + 10,
+          y: 100,
+        }
+      ]);
+    }, 1000); // Intervalo más rápido para generar burbujas cada segundo
 
-      return () => clearInterval(interval);
-    }
-  }, [gameOver, id]);
+    return () => clearInterval(interval);
+  }
+}, [gameOver, id]);
 
   // Lógica para el juego 2: Mover las burbujas
   useEffect(() => {
@@ -98,12 +105,10 @@ const GamePlayer = () => {
       const fromIndex = newNumbers.indexOf(selectedNumber);
       const toIndex = newNumbers.indexOf(number);
 
-      // Intercambiar los números seleccionados
       [newNumbers[fromIndex], newNumbers[toIndex]] = [newNumbers[toIndex], newNumbers[fromIndex]];
       setNumbers(newNumbers);
       setSelectedNumber(null); // Deseleccionar el número
     } else {
-      // Si no hay un número seleccionado, selecciona el número tocado
       setSelectedNumber(number);
     }
   };
@@ -111,7 +116,7 @@ const GamePlayer = () => {
   const checkOrder = () => {
     if (numbers.join('') === '12345678910') {
       playWinnerSound();
-      setShowModal(true);
+      setShowModal(true); // Modal para ganar el juego 1
     } else {
       alert('Ups, algo no está bien. ¡Inténtalo de nuevo!');
     }
@@ -129,7 +134,7 @@ const GamePlayer = () => {
 
   const handleRestart = () => {
     if (id === '1') {
-      setShowModal(false);
+      setShowModal(false); // Cierra el modal al reiniciar
       setNumbers(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
       setSelectedNumber(null);
     } else if (id === '2') {
@@ -275,12 +280,12 @@ const GamePlayer = () => {
         </div>
       )}
 
-      {/* Modal para ganar el juego */}
-      {puntuacion >= 5 && id === '3' && (
+      {/* Modal para ganar el juego 1 */}
+      {showModal && id === '1' && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
-            <p className="mb-4">¡Felicidades! Alcanzaste 5 puntos.</p>
+            <p className="mb-4">¡Felicidades! Has organizado correctamente los números.</p>
             <button
               onClick={handleRestart}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
