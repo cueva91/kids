@@ -62,6 +62,16 @@ const Game = () => {
               </Link>
             </div>
 
+            {/* Tercera miniatura que dispara el tercer juego */}
+            <div className="relative w-full max-w-xs">
+              <Link to="/game-player/3">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                  <img src="/miniaturajuego3.jpg" alt="Juego 3" className="w-full h-auto object-cover" />
+                  <span className="absolute top-0 left-0 bg-green-600 text-white px-2 py-1">NUEVO</span>
+                </div>
+              </Link>
+            </div>
+
             {[2, 3, 4, 5].map((num) => (
               <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
                 <img src={`https://placehold.co/180x120`} alt={`Juego educativo ${num}`} className="w-full h-auto object-cover" />

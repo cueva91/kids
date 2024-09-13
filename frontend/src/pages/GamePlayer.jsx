@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import fondoJuego from '../../public/fondojuego.jpg';
 import hoverSound from '../assets/sound/soundgame.mp3';
 import winnerSound from '../assets/sound/soundwinner.mp3';
+
+const vocales = ['A', 'E', 'I', 'O', 'U'];
+const colores = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
 
 const GamePlayer = () => {
   const { id } = useParams(); // Obtén el id del juego desde la URL
@@ -10,10 +14,35 @@ const GamePlayer = () => {
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [numbers, setNumbers] = useState(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
-  const [score, setScore] = useState(0); // Estado para el juego 2
+  const [score, setScore] = useState(0); // Estado para el juego 2 y 3
   const [currentNumber, setCurrentNumber] = useState(1); // Estado para el número objetivo en el juego 2
   const [bubbles, setBubbles] = useState([]); // Burbujas del juego 2
-  const [gameOver, setGameOver] = useState(false); // Estado de fin de juego para el juego 2
+  const [gameOver, setGameOver] = useState(false); // Estado de fin de juego para el juego 2 y 3
+  const [vocalActual, setVocalActual] = useState(''); // Estado del juego 3 (vocal objetivo)
+  const [posicion, setPosicion] = useState(0); // Posición del carrito en el juego 3
+  const [puntuacion, setPuntuacion] = useState(0); // Puntuación del juego 3
+
+  // Lógica para generar una nueva vocal en el juego 3
+  useEffect(() => {
+    if (id === '3') nuevaVocal();
+  }, [id]);
+
+  const nuevaVocal = () => {
+    const nuevaVocal = vocales[Math.floor(Math.random() * vocales.length)];
+    setVocalActual(nuevaVocal);
+    setPosicion(0);
+  };
+
+  // Lógica para mover el carrito en el juego 3
+  const moverCarrito = (vocal) => {
+    if (vocal === vocalActual) {
+      setPosicion(posicion + 20);
+      if (posicion >= 80) {
+        setPuntuacion(puntuacion + 1);
+        nuevaVocal();
+      }
+    }
+  };
 
   // Lógica para el juego 2: Generar burbujas
   useEffect(() => {
@@ -25,8 +54,8 @@ const GamePlayer = () => {
             id: Math.random(),
             number: Math.floor(Math.random() * 10) + 1,
             x: Math.random() * 80 + 10,
-            y: 100
-          }
+            y: 100,
+          },
         ]);
       }, 2000);
 
@@ -62,10 +91,21 @@ const GamePlayer = () => {
     }
   };
 
+  // Lógica del Juego 1
   const handleNumberClick = (number) => {
-    if (id === '1') {
-      // Lógica del Juego 1
-    } 
+    if (selectedNumber !== null) {
+      const newNumbers = [...numbers];
+      const fromIndex = newNumbers.indexOf(selectedNumber);
+      const toIndex = newNumbers.indexOf(number);
+
+      // Intercambiar los números seleccionados
+      [newNumbers[fromIndex], newNumbers[toIndex]] = [newNumbers[toIndex], newNumbers[fromIndex]];
+      setNumbers(newNumbers);
+      setSelectedNumber(null); // Deseleccionar el número
+    } else {
+      // Si no hay un número seleccionado, selecciona el número tocado
+      setSelectedNumber(number);
+    }
   };
 
   const checkOrder = () => {
@@ -92,10 +132,15 @@ const GamePlayer = () => {
       setShowModal(false);
       setNumbers(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
       setSelectedNumber(null);
-    } else {
+    } else if (id === '2') {
       setScore(0);
       setCurrentNumber(1);
       setBubbles([]);
+      setGameOver(false);
+    } else if (id === '3') {
+      setPuntuacion(0);
+      setPosicion(0);
+      nuevaVocal();
       setGameOver(false);
     }
   };
@@ -114,7 +159,11 @@ const GamePlayer = () => {
       }}
     >
       <h2 className="text-3xl sm:text-5xl font-bold text-purple-800 mb-6 sm:mb-8 text-center">
-        {id === '1' ? 'Juego 1: ¡Organiza los números!' : 'Juego 2: ¡Burbujas Numéricas!'}
+        {id === '1'
+          ? 'Juego 1: ¡Organiza los números!'
+          : id === '2'
+          ? 'Juego 2: ¡Burbujas Numéricas!'
+          : 'Juego 3: ¡Carritos y Vocales!'}
       </h2>
 
       <main className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md sm:max-w-4xl mt-8 mx-4">
@@ -145,28 +194,60 @@ const GamePlayer = () => {
               Verificar Orden
             </button>
           </div>
-        ) : (
+        ) : id === '2' ? (
           <div className="relative h-screen">
             {/* Implementación del Juego 2 */}
-            <div className="absolute top-4 left-4 text-2xl font-bold">
-              Puntos: {score}
-            </div>
-            <div className="absolute top-4 right-4 text-2xl font-bold">
-              Busca el: {currentNumber}
-            </div>
+            <div className="absolute top-4 left-4 text-2xl font-bold">Puntos: {score}</div>
+            <div className="absolute top-4 right-4 text-2xl font-bold">Busca el: {currentNumber}</div>
             {bubbles.map(bubble => (
               <button
                 key={bubble.id}
                 className="absolute w-16 h-16 rounded-full bg-yellow-300 flex items-center justify-center text-2xl font-bold cursor-pointer transition-transform hover:scale-110"
                 style={{
                   left: `${bubble.x}%`,
-                  bottom: `${bubble.y}%`
+                  bottom: `${bubble.y}%`,
                 }}
                 onClick={() => handleBubbleClick(bubble.number)}
               >
                 {bubble.number}
               </button>
             ))}
+          </div>
+        ) : (
+          <div>
+            {/* Implementación del Juego 3 */}
+            <h1 className="text-4xl font-bold mb-8 text-indigo-700">Juego de Vocales con Carritos</h1>
+            <div className="mb-4 text-2xl font-semibold">Puntuación: {puntuacion}</div>
+            <div className="mb-8 text-3xl font-bold">Vocal actual: {vocalActual}</div>
+            <div className="w-full max-w-3xl h-20 bg-gray-300 rounded-full relative overflow-hidden mb-8">
+              <motion.div
+                className="absolute bottom-0 left-0 w-20 h-20"
+                style={{ x: `${posicion}%` }}
+                animate={{ x: `${posicion}%` }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                <img
+                  src="/carrito.png"
+                  alt="Carrito"
+                  className="w-full h-full"
+                  style={{ transform: 'scaleX(-1)' }} // Volteando el carrito
+                />
+              </motion.div>
+            </div>
+            <div className="grid grid-cols-5 gap-4">
+              {vocales.map((vocal, index) => (
+                <motion.button
+                  key={vocal}
+                  className="px-6 py-3 text-2xl font-bold text-white rounded-full shadow-lg"
+                  style={{ backgroundColor: colores[index] }}
+                  onClick={() => moverCarrito(vocal)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {vocal}
+                </motion.button>
+              ))}
+            </div>
           </div>
         )}
       </main>
@@ -179,31 +260,30 @@ const GamePlayer = () => {
         ⬅️ Volver Atrás
       </button>
 
-      {/* Modal para jugar de nuevo */}
-      {showModal && id === '1' && (
+      {/* Modal para juego terminado */}
+      {gameOver && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
-            <p className="mb-4">¿Quieres jugar de nuevo?</p>
+            <p className="text-xl font-bold">¡Juego terminado!</p>
             <button
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 transition duration-300"
               onClick={handleRestart}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
             >
-              Jugar de Nuevo
+              Jugar de nuevo
             </button>
           </div>
         </div>
       )}
 
-      {/* Modal para juego 2 */}
-      {gameOver && id === '2' && (
+      {/* Modal para ganar el juego */}
+      {puntuacion >= 5 && id === '3' && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
-            <p className="text-xl font-bold">¡Juego terminado! 🎉</p>
-            <p className="text-lg">Puntuación final: {score}</p>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
+            <p className="mb-4">¡Felicidades! Alcanzaste 5 puntos.</p>
             <button
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               onClick={handleRestart}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
             >
               Jugar de nuevo
             </button>
@@ -214,7 +294,7 @@ const GamePlayer = () => {
   );
 };
 
-// Función para desordenar los números
+// Función para desordenar los números (juego 1)
 function shuffleArray(array) {
   let shuffledArray = array.slice();
   for (let i = shuffledArray.length - 1; i > 0; i--) {
