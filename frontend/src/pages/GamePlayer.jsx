@@ -20,7 +20,7 @@ const GamePlayer = () => {
   const [gameOver, setGameOver] = useState(false);
   const [vocalActual, setVocalActual] = useState('');
   const [posicion, setPosicion] = useState(0);
-  const [puntuacion, setPuntuacion] = useState(0);
+  const [puntuacion, setPuntuacion] = useState(0); // Puntuación del juego 3
 
   // Lógica para generar una nueva vocal en el juego 3
   useEffect(() => {
@@ -40,6 +40,12 @@ const GamePlayer = () => {
       if (posicion >= 80) {
         setPuntuacion(puntuacion + 1);
         nuevaVocal();
+
+        // Verificar si ha alcanzado 10 puntos
+        if (puntuacion + 1 === 10) {
+          setShowModal(true); // Mostrar modal de victoria
+          playWinnerSound(); // Reproducir sonido de victoria
+        }
       }
     }
   };
@@ -93,9 +99,8 @@ const GamePlayer = () => {
       setCurrentNumber(currentNumber === 10 ? 1 : currentNumber + 1);
       setBubbles(bubbles.filter(bubble => bubble.number !== clickedNumber));
 
-      // Verifica si el jugador ha alcanzado la puntuación para ganar
       if (score + 1 === 10) {
-        setShowModal(true); // Mostrar modal de victoria
+        setShowModal(true); // Mostrar modal de victoria para juego 2
         playWinnerSound(); // Reproducir sonido de victoria
       }
     } else {
@@ -103,7 +108,6 @@ const GamePlayer = () => {
     }
   };
 
-  // Lógica del Juego 1
   const handleNumberClick = (number) => {
     if (selectedNumber !== null) {
       const newNumbers = [...numbers];
@@ -112,7 +116,7 @@ const GamePlayer = () => {
 
       [newNumbers[fromIndex], newNumbers[toIndex]] = [newNumbers[toIndex], newNumbers[fromIndex]];
       setNumbers(newNumbers);
-      setSelectedNumber(null); // Deseleccionar el número
+      setSelectedNumber(null);
     } else {
       setSelectedNumber(number);
     }
@@ -121,7 +125,7 @@ const GamePlayer = () => {
   const checkOrder = () => {
     if (numbers.join('') === '12345678910') {
       playWinnerSound();
-      setShowModal(true); // Modal para ganar el juego 1
+      setShowModal(true);
     } else {
       alert('Ups, algo no está bien. ¡Inténtalo de nuevo!');
     }
@@ -138,9 +142,8 @@ const GamePlayer = () => {
   };
 
   const handleRestart = () => {
-    // Reiniciar todos los estados relevantes para cualquier juego
-    setShowModal(false); // Cerrar el modal de victoria
-    setGameOver(false); // Reiniciar estado de fin de juego
+    setShowModal(false);
+    setGameOver(false);
 
     if (id === '1') {
       setNumbers(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
@@ -304,6 +307,22 @@ const GamePlayer = () => {
           <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
             <p className="mb-4">¡Felicidades! Alcanzaste 10 puntos.</p>
+            <button
+              onClick={handleRestart}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
+            >
+              Jugar de nuevo
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal para ganar el juego 3 */}
+      {showModal && id === '3' && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
+            <p className="mb-4">¡Felicidades! Alcanzaste 10 puntos con el carrito.</p>
             <button
               onClick={handleRestart}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
