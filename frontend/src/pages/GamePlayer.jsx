@@ -45,30 +45,29 @@ const GamePlayer = () => {
   };
 
   // Lógica para el juego 2: Generar burbujas
-useEffect(() => {
-  if (id === '2' && !gameOver) {
-    const interval = setInterval(() => {
-      // Genera 2 burbujas en lugar de solo 1 para cada intervalo
-      setBubbles(prevBubbles => [
-        ...prevBubbles,
-        {
-          id: Math.random(),
-          number: Math.floor(Math.random() * 10) + 1,
-          x: Math.random() * 80 + 10,
-          y: 100,
-        },
-        {
-          id: Math.random(),
-          number: Math.floor(Math.random() * 10) + 1,
-          x: Math.random() * 80 + 10,
-          y: 100,
-        }
-      ]);
-    }, 1000); // Intervalo más rápido para generar burbujas cada segundo
+  useEffect(() => {
+    if (id === '2' && !gameOver) {
+      const interval = setInterval(() => {
+        setBubbles(prevBubbles => [
+          ...prevBubbles,
+          {
+            id: Math.random(),
+            number: Math.floor(Math.random() * 10) + 1,
+            x: Math.random() * 80 + 10,
+            y: 100,
+          },
+          {
+            id: Math.random(),
+            number: Math.floor(Math.random() * 10) + 1,
+            x: Math.random() * 80 + 10,
+            y: 100,
+          }
+        ]);
+      }, 1000);
 
-    return () => clearInterval(interval);
-  }
-}, [gameOver, id]);
+      return () => clearInterval(interval);
+    }
+  }, [gameOver, id]);
 
   // Lógica para el juego 2: Mover las burbujas
   useEffect(() => {
@@ -93,6 +92,12 @@ useEffect(() => {
       setScore(score + 1);
       setCurrentNumber(currentNumber === 10 ? 1 : currentNumber + 1);
       setBubbles(bubbles.filter(bubble => bubble.number !== clickedNumber));
+
+      // Verifica si el jugador ha alcanzado la puntuación para ganar
+      if (score + 1 === 10) {
+        setShowModal(true); // Mostrar modal de victoria
+        playWinnerSound(); // Reproducir sonido de victoria
+      }
     } else {
       setGameOver(true);
     }
@@ -133,20 +138,21 @@ useEffect(() => {
   };
 
   const handleRestart = () => {
+    // Reiniciar todos los estados relevantes para cualquier juego
+    setShowModal(false); // Cerrar el modal de victoria
+    setGameOver(false); // Reiniciar estado de fin de juego
+
     if (id === '1') {
-      setShowModal(false); // Cierra el modal al reiniciar
       setNumbers(shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
       setSelectedNumber(null);
     } else if (id === '2') {
       setScore(0);
       setCurrentNumber(1);
       setBubbles([]);
-      setGameOver(false);
     } else if (id === '3') {
       setPuntuacion(0);
       setPosicion(0);
       nuevaVocal();
-      setGameOver(false);
     }
   };
 
@@ -172,7 +178,6 @@ useEffect(() => {
       </h2>
 
       <main className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md sm:max-w-4xl mt-8 mx-4">
-        {/* Lógica del juego dependiendo del id */}
         {id === '1' ? (
           <div>
             <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8">
@@ -201,7 +206,6 @@ useEffect(() => {
           </div>
         ) : id === '2' ? (
           <div className="relative h-screen">
-            {/* Implementación del Juego 2 */}
             <div className="absolute top-4 left-4 text-2xl font-bold">Puntos: {score}</div>
             <div className="absolute top-4 right-4 text-2xl font-bold">Busca el: {currentNumber}</div>
             {bubbles.map(bubble => (
@@ -220,7 +224,6 @@ useEffect(() => {
           </div>
         ) : (
           <div>
-            {/* Implementación del Juego 3 */}
             <h1 className="text-4xl font-bold mb-8 text-indigo-700">Juego de Vocales con Carritos</h1>
             <div className="mb-4 text-2xl font-semibold">Puntuación: {puntuacion}</div>
             <div className="mb-8 text-3xl font-bold">Vocal actual: {vocalActual}</div>
@@ -235,7 +238,7 @@ useEffect(() => {
                   src="/carrito.png"
                   alt="Carrito"
                   className="w-full h-full"
-                  style={{ transform: 'scaleX(-1)' }} // Volteando el carrito
+                  style={{ transform: 'scaleX(-1)' }}
                 />
               </motion.div>
             </div>
@@ -257,7 +260,6 @@ useEffect(() => {
         )}
       </main>
 
-      {/* Botón para volver atrás */}
       <button
         onClick={handleBack}
         className="fixed bottom-4 right-4 bg-yellow-500 text-white text-lg sm:text-xl py-2 sm:py-3 px-4 sm:px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
@@ -286,6 +288,22 @@ useEffect(() => {
           <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
             <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
             <p className="mb-4">¡Felicidades! Has organizado correctamente los números.</p>
+            <button
+              onClick={handleRestart}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
+            >
+              Jugar de nuevo
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal para ganar el juego 2 */}
+      {showModal && id === '2' && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
+            <p className="mb-4">¡Felicidades! Alcanzaste 10 puntos.</p>
             <button
               onClick={handleRestart}
               className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
