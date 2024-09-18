@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors, TouchSensor } from '@dnd-kit/core';
+import { DndContext, closestCenter, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import fondoJuego from '../../public/fondojuego.jpg';
@@ -15,7 +15,7 @@ const SortableItem = ({ id }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    touchAction: 'none', // Prevents scrolling on touch devices while dragging
+    touchAction: 'none', // Previene el desplazamiento en dispositivos táctiles mientras se arrastra
   };
 
   return (
@@ -178,7 +178,9 @@ const GamePlayer = () => {
           ? 'Juego 2: ¡Burbujas Numéricas!'
           : id === '3'
           ? 'Juego 3: Tablas de Multiplicar'
-          : 'Juego 4: Sopa de Letras'}
+          : id === '4'
+          ? 'Juego 4: Sopa de Letras'
+          : 'Juego 5: Anagramas Infantiles'}
       </h2>
 
       <main className="text-center bg-white bg-opacity-90 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl mt-8">
@@ -187,11 +189,7 @@ const GamePlayer = () => {
             <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8">
               ¡Organiza los números del 1 al 10!
             </h1>
-            <DndContext 
-              sensors={sensors}
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-            >
+            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
               <SortableContext items={numbers} strategy={verticalListSortingStrategy}>
                 <div className="grid grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
                   {numbers.map((number) => (
@@ -221,7 +219,9 @@ const GamePlayer = () => {
 
             <div className="relative h-[60vh]">
               <div className="absolute top-4 left-4 text-2xl font-bold text-purple shadow-lg">Puntos: {score}</div>
-              <div className="absolute top-4 right-4 text-2xl font-bold text-purple shadow-lg">Busca el: {currentNumber}</div>
+              <div className="absolute top-4 right-4 text-2xl font-bold text-purple shadow-lg">
+                Busca el: {currentNumber}
+              </div>
               <AnimatePresence>
                 {bubbles.map((bubble) => (
                   <motion.button
@@ -254,12 +254,12 @@ const GamePlayer = () => {
               src="https://wordwall.net/es/embed/1d3e6b5574ed4b969eb84d196cc37e55?themeId=21&templateId=69&fontStackId=0"
               width="500"
               height="380"
-              frameborder="0"
+              frameBorder="0"
               allowFullScreen
               title="Tablas de Multiplicar"
             ></iframe>
           </div>
-        ) : (
+        ) : id === '4' ? (
           <div>
             {/* Juego 4: Sopa de Letras */}
             <iframe
@@ -267,9 +267,22 @@ const GamePlayer = () => {
               src="https://wordwall.net/es/embed/f5ef9a048c06437490315837fb383b27?themeId=3&templateId=10&fontStackId=0"
               width="500"
               height="380"
-              frameborder="0"
+              frameBorder="0"
               allowFullScreen
               title="Sopa de Letras"
+            ></iframe>
+          </div>
+        ) : (
+          <div>
+            {/* Juego 5: Anagramas Infantiles */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/31e3ca3d97de4066badf32fdfcde158c?themeId=44&templateId=38&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Anagramas Infantiles"
             ></iframe>
           </div>
         )}
@@ -309,22 +322,6 @@ const GamePlayer = () => {
             </motion.button>
           </motion.div>
         </motion.div>
-      )}
-
-      {/* Modal para ganar el juego 3 */}
-      {showModal && id === '3' && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
-            <p className="mb-4">¡Felicidades! Alcanzaste 10 puntos con el carrito.</p>
-            <button
-              onClick={handleRestart}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
-            >
-              Jugar de nuevo
-            </button>
-          </div>
-        </div>
       )}
     </div>
   );

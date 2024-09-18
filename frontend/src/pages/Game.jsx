@@ -40,44 +40,50 @@ const Game = () => {
             <h1 className="text-3xl sm:text-4xl font-comic-neue font-bold text-center sm:text-left">JUEGOS EDUCATIVOS PARA NIÑOS</h1>
           </div>
 
-          {/* Juegos con miniaturas ajustadas */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 w-full max-w-full">
-            {/* Primera miniatura que dispara el primer juego */}
-            <div className="relative w-full max-w-xs">
-              <Link to="/game-player/1">
-                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
-                  <img src="/miniaturajuego.jpg" alt="Nuevo juego educativo" className="w-full h-auto object-cover" />
-                  <span className="absolute top-0 left-0 bg-red-600 text-white px-2 py-1">NUEVO</span>
+          {/* Juegos con miniaturas ajustadas y organizadas */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mt-4 w-full max-w-full">
+            {/* Juego 5 (más reciente con la etiqueta "NUEVO") */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/5">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego5.jpg" alt="Juego 5" className="w-full h-auto object-cover" />
+                  <span className="absolute top-0 left-0 bg-orange-600 text-white px-2 py-1">NUEVO</span>
                 </div>
               </Link>
             </div>
 
-            {/* Segunda miniatura que dispara el segundo juego */}
-            <div className="relative w-full max-w-xs">
-              <Link to="/game-player/2">
-                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
-                  <img src="/miniaturajuego2.jpg" alt="Juego 2" className="w-full h-auto object-cover" />
-                  <span className="absolute top-0 left-0 bg-green-600 text-white px-2 py-1">NUEVO</span>
-                </div>
-              </Link>
-            </div>
-
-            {/* Tercera miniatura que dispara el tercer juego */}
-            <div className="relative w-full max-w-xs">
-              <Link to="/game-player/3">
-                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
-                  <img src="/miniaturajuego3.jpg" alt="Juego 3" className="w-full h-auto object-cover" />
-                  <span className="absolute top-0 left-0 bg-green-600 text-white px-2 py-1">NUEVO</span>
-                </div>
-              </Link>
-            </div>
-
-            {/* Cuarta miniatura que dispara el cuarto juego */}
-            <div className="relative w-full max-w-xs">
+            {/* Juego 4 */}
+            <div className="relative w-full max-w-[140px]">
               <Link to="/game-player/4">
-                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
                   <img src="/miniaturajuego4.jpg" alt="Juego 4" className="w-full h-auto object-cover" />
-                  <span className="absolute top-0 left-0 bg-purple-600 text-white px-2 py-1">NUEVO</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Juego 3 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/3">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego3.jpg" alt="Juego 3" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+            </div>
+
+            {/* Juego 2 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/2">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego2.jpg" alt="Juego 2" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+            </div>
+
+            {/* Juego 1 (más antiguo) */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/1">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego.jpg" alt="Juego 1" className="w-full h-auto object-cover" />
                 </div>
               </Link>
             </div>
@@ -121,7 +127,7 @@ const GameSection = ({ title, color, moreGames }) => (
         <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-xs">
           <img src={`https://placehold.co/150x100`} alt={`${title} ${num}`} className="w-full h-auto object-cover" />
         </div>
-      ))}
+      ))}  
     </div>
     <a href="#" className="text-white">{moreGames}</a>
   </div>
