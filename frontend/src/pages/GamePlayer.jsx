@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors, TouchSensor } from '@dnd-kit/core';
 import { SortableContext, arrayMove, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import fondoJuego from '../../public/fondojuego.jpg';
@@ -15,6 +15,7 @@ const SortableItem = ({ id }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    touchAction: 'none', // Prevents scrolling on touch devices while dragging
   };
 
   return (
@@ -45,7 +46,15 @@ const GamePlayer = () => {
   const [lives, setLives] = useState(3);
   const [level, setLevel] = useState(1);
 
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    })
+  );
 
   // Monitorear cambios en los números y disparar el modal
   useEffect(() => {
@@ -167,7 +176,9 @@ const GamePlayer = () => {
           ? 'Juego 1: ¡Organiza los números!'
           : id === '2'
           ? 'Juego 2: ¡Burbujas Numéricas!'
-          : 'Juego 3: ¡Nuevo juego!'}
+          : id === '3'
+          ? 'Juego 3: Tablas de Multiplicar'
+          : 'Juego 4: Sopa de Letras'}
       </h2>
 
       <main className="text-center bg-white bg-opacity-90 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl mt-8">
@@ -176,7 +187,11 @@ const GamePlayer = () => {
             <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8">
               ¡Organiza los números del 1 al 10!
             </h1>
-            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <DndContext 
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
               <SortableContext items={numbers} strategy={verticalListSortingStrategy}>
                 <div className="grid grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
                   {numbers.map((number) => (
@@ -231,9 +246,9 @@ const GamePlayer = () => {
               </AnimatePresence>
             </div>
           </div>
-        ) : (
+        ) : id === '3' ? (
           <div>
-            {/* Juego 3: Iframe integrado */}
+            {/* Juego 3: Tablas de Multiplicar */}
             <iframe
               style={{ maxWidth: '100%' }}
               src="https://wordwall.net/es/embed/1d3e6b5574ed4b969eb84d196cc37e55?themeId=21&templateId=69&fontStackId=0"
@@ -241,7 +256,20 @@ const GamePlayer = () => {
               height="380"
               frameborder="0"
               allowFullScreen
-              title="Juego Integrado"
+              title="Tablas de Multiplicar"
+            ></iframe>
+          </div>
+        ) : (
+          <div>
+            {/* Juego 4: Sopa de Letras */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/f5ef9a048c06437490315837fb383b27?themeId=3&templateId=10&fontStackId=0"
+              width="500"
+              height="380"
+              frameborder="0"
+              allowFullScreen
+              title="Sopa de Letras"
             ></iframe>
           </div>
         )}

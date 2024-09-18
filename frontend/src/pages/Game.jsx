@@ -72,29 +72,18 @@ const Game = () => {
               </Link>
             </div>
 
-            {[2, 3, 4, 5].map((num) => (
-              <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
-                <img src={`https://placehold.co/180x120`} alt={`Juego educativo ${num}`} className="w-full h-auto object-cover" />
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center mt-4 space-y-4 md:space-y-0 w-full max-w-full">
-            <button className="bg-blue-800 text-white px-4 py-2 rounded-full">
-              <i className="fas fa-arrow-left"></i>
-            </button>
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 overflow-x-auto w-full max-w-full">
-              <button className="bg-blue-800 text-white px-2 py-1 rounded-full">TODOS LOS ESPECTÁCULOS EDUCATIVOS</button>
-              <div className="flex space-x-2 overflow-x-auto w-full max-w-full">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                  <img key={num} src={`https://placehold.co/40x40`} alt={`Personaje infantil ${num}`} className="w-10 h-10 rounded-full" />
-                ))}
-              </div>
-              <button className="bg-blue-800 text-white px-2 py-1 rounded-full">
-                <i className="fas fa-arrow-right"></i>
-              </button>
+            {/* Cuarta miniatura que dispara el cuarto juego */}
+            <div className="relative w-full max-w-xs">
+              <Link to="/game-player/4">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-xs">
+                  <img src="/miniaturajuego4.jpg" alt="Juego 4" className="w-full h-auto object-cover" />
+                  <span className="absolute top-0 left-0 bg-purple-600 text-white px-2 py-1">NUEVO</span>
+                </div>
+              </Link>
             </div>
           </div>
+
+          {/* Additional buttons and content below */}
         </div>
       </main>
 

@@ -10,7 +10,6 @@ const Game = lazy(() => import('./pages/Game'));
 const VideoPlayer = lazy(() => import('./pages/VideoPlayer'));
 const UploadVideo = lazy(() => import('./pages/UploadVideo'));
 const GamePlayer = lazy(() => import('./pages/GamePlayer'));
-const GamePlayer2 = lazy(() => import('./pages/GamePlayer2'));
 
 import './index.css';
 
