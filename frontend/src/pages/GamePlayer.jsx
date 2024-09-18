@@ -282,6 +282,22 @@ const GamePlayer = () => {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Modal para ganar el juego 3 */}
+      {showModal && id === '3' && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg text-center mx-4">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">¡Ganaste! 🎉</h2>
+            <p className="mb-4">¡Felicidades! Alcanzaste 10 puntos con el carrito.</p>
+            <button
+              onClick={handleRestart}
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300"
+            >
+              Jugar de nuevo
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
