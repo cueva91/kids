@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import Loading from './components/Loading';  // Importa el componente de carga
 
 // Implementar lazy loading para las páginas
 const Home = lazy(() => import('./pages/Home'));
@@ -18,8 +19,7 @@ const App = () => {
     <HelmetProvider>
       <Router>
         <div className="bg-purple-900 min-h-screen">
-          {/* Suspense envuelve todas las rutas para manejar la carga de componentes */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/video" element={<Video />} />
@@ -37,4 +37,3 @@ const App = () => {
 };
 
 export default App;
-
