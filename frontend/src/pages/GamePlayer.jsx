@@ -15,7 +15,7 @@ const SortableItem = ({ id }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    touchAction: 'none', // Previene el desplazamiento en dispositivos táctiles mientras se arrastra
+    touchAction: 'none',
   };
 
   return (
@@ -56,7 +56,6 @@ const GamePlayer = () => {
     })
   );
 
-  // Monitorear cambios en los números y disparar el modal
   useEffect(() => {
     if (numbers.join('') === '12345678910') {
       setShowModal(true);
@@ -64,7 +63,6 @@ const GamePlayer = () => {
     }
   }, [numbers]);
 
-  // Empezar Juego 1: Organiza los Números
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
@@ -79,53 +77,16 @@ const GamePlayer = () => {
     playSound(hoverSound);
   };
 
-  // Empezar Juego 2: Burbujas Numéricas
-  useEffect(() => {
-    if (id === '2' && !gameOver) {
-      const interval = setInterval(() => {
-        const newBubbles = Array.from({ length: 3 + level }, () => ({
-          id: Math.random(),
-          number: Math.floor(Math.random() * 10) + 1,
-          x: Math.random() * 80 + 10,
-          y: 100,
-          size: Math.random() * 20 + 30,
-          speed: Math.random() * 0.5 + 0.5 + level * 0.05,
-        }));
-        setBubbles((prevBubbles) => [...prevBubbles, ...newBubbles]);
-      }, 1000 / level);
-
-      return () => clearInterval(interval);
-    }
-  }, [gameOver, id, level]);
-
-  useEffect(() => {
-    if (id === '2' && !gameOver) {
-      const interval = setInterval(() => {
-        setBubbles((prevBubbles) =>
-          prevBubbles
-            .map((bubble) => ({
-              ...bubble,
-              y: bubble.y - bubble.speed,
-            }))
-            .filter((bubble) => bubble.y > -10)
-        );
-      }, 50);
-
-      return () => clearInterval(interval);
-    }
-  }, [gameOver, id]);
-
   const handleBubbleClick = (clickedNumber) => {
     if (clickedNumber === currentNumber) {
       setScore(score + 1);
       setCurrentNumber(currentNumber === 10 ? 1 : currentNumber + 1);
       setBubbles(bubbles.filter((bubble) => bubble.number !== clickedNumber));
 
-      // Incrementar nivel y ajustar timer, vidas, etc.
       if (score + 1 === 15 * level) {
         setLevel((prevLevel) => prevLevel + 1);
         setTimer((prevTimer) => prevTimer + 20);
-        setLives((prevLives) => Math.min(prevLives + 1, 3)); // Recuperar vidas
+        setLives((prevLives) => Math.min(prevLives + 1, 3));
       }
 
       playSound(hoverSound);
@@ -137,7 +98,6 @@ const GamePlayer = () => {
     }
   };
 
-  // Funciones comunes para manejar sonidos y reiniciar el juego
   const playSound = (soundFile) => {
     const audio = new Audio(soundFile);
     audio.play();
@@ -172,32 +132,131 @@ const GamePlayer = () => {
       }}
     >
       <h2 className="text-3xl sm:text-5xl font-bold text-purple-800 mb-6 sm:mb-8 text-center">
-        {id === '1'
-          ? 'Juego 1: ¡Organiza los números!'
-          : id === '2'
-          ? 'Juego 2: ¡Burbujas Numéricas!'
-          : id === '3'
-          ? 'Juego 3: Tablas de Multiplicar'
+        {id === '10'
+          ? 'Juego 10: Diferenciar Características de una Persona'
+          : id === '9'
+          ? 'Juego 9: Pensamiento Matemático'
+          : id === '8'
+          ? 'Juego 8: Aprendizaje de Inglés'
+          : id === '7'
+          ? 'Juego 7: Animales Terrestres y Acuáticos'
+          : id === '6'
+          ? 'Juego 6: Ruleta de Países'
+          : id === '5'
+          ? 'Juego 5: Anagramas Infantiles'
           : id === '4'
           ? 'Juego 4: Sopa de Letras'
-          : 'Juego 5: Anagramas Infantiles'}
+          : id === '3'
+          ? 'Juego 3: Tablas de Multiplicar'
+          : id === '2'
+          ? 'Juego 2: ¡Burbujas Numéricas!'
+          : 'Juego 1: ¡Organiza los números!'}
       </h2>
 
       <main className="text-center bg-white bg-opacity-90 p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl mt-8">
-        {id === '1' ? (
+        {id === '10' ? (
           <div>
-            <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8">
-              ¡Organiza los números del 1 al 10!
-            </h1>
-            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-              <SortableContext items={numbers} strategy={verticalListSortingStrategy}>
-                <div className="grid grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
-                  {numbers.map((number) => (
-                    <SortableItem key={number} id={number} />
-                  ))}
-                </div>
-              </SortableContext>
-            </DndContext>
+            {/* Juego 10: Diferenciar Características de una Persona */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/9a5d86e4758e4d70abcac2c9418b3ce6?themeId=41&templateId=76&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Diferenciar Características de una Persona"
+            ></iframe>
+          </div>
+        ) : id === '9' ? (
+          <div>
+            {/* Juego 9: Pensamiento Matemático */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/eabd8a94678143ea857e689bcba774fa?themeId=41&templateId=30&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Pensamiento Matemático"
+            ></iframe>
+          </div>
+        ) : id === '8' ? (
+          <div>
+            {/* Juego 8: Aprendizaje de Inglés */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/f083c797e09a489e83074ff8b63f237a?themeId=21&templateId=30&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Aprendizaje de Inglés"
+            ></iframe>
+          </div>
+        ) : id === '7' ? (
+          <div>
+            {/* Juego 7: Animales Terrestres y Acuáticos */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/d2bf56eeb6bd4f8e90b391d467335863?themeId=1&templateId=2&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Animales Terrestres y Acuáticos"
+            ></iframe>
+          </div>
+        ) : id === '6' ? (
+          <div>
+            {/* Juego 6: Ruleta de Países */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/80546088b47849b386e66db29c89253e?themeId=1&templateId=8&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Ruleta de Países"
+            ></iframe>
+          </div>
+        ) : id === '5' ? (
+          <div>
+            {/* Juego 5: Anagramas Infantiles */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/31e3ca3d97de4066badf32fdfcde158c?themeId=44&templateId=38&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Anagramas Infantiles"
+            ></iframe>
+          </div>
+        ) : id === '4' ? (
+          <div>
+            {/* Juego 4: Sopa de Letras */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/f5ef9a048c06437490315837fb383b27?themeId=3&templateId=10&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Sopa de Letras"
+            ></iframe>
+          </div>
+        ) : id === '3' ? (
+          <div>
+            {/* Juego 3: Tablas de Multiplicar */}
+            <iframe
+              style={{ maxWidth: '100%' }}
+              src="https://wordwall.net/es/embed/1d3e6b5574ed4b969eb84d196cc37e55?themeId=21&templateId=69&fontStackId=0"
+              width="500"
+              height="380"
+              frameBorder="0"
+              allowFullScreen
+              title="Tablas de Multiplicar"
+            ></iframe>
           </div>
         ) : id === '2' ? (
           <div>
@@ -246,44 +305,21 @@ const GamePlayer = () => {
               </AnimatePresence>
             </div>
           </div>
-        ) : id === '3' ? (
-          <div>
-            {/* Juego 3: Tablas de Multiplicar */}
-            <iframe
-              style={{ maxWidth: '100%' }}
-              src="https://wordwall.net/es/embed/1d3e6b5574ed4b969eb84d196cc37e55?themeId=21&templateId=69&fontStackId=0"
-              width="500"
-              height="380"
-              frameBorder="0"
-              allowFullScreen
-              title="Tablas de Multiplicar"
-            ></iframe>
-          </div>
-        ) : id === '4' ? (
-          <div>
-            {/* Juego 4: Sopa de Letras */}
-            <iframe
-              style={{ maxWidth: '100%' }}
-              src="https://wordwall.net/es/embed/f5ef9a048c06437490315837fb383b27?themeId=3&templateId=10&fontStackId=0"
-              width="500"
-              height="380"
-              frameBorder="0"
-              allowFullScreen
-              title="Sopa de Letras"
-            ></iframe>
-          </div>
         ) : (
           <div>
-            {/* Juego 5: Anagramas Infantiles */}
-            <iframe
-              style={{ maxWidth: '100%' }}
-              src="https://wordwall.net/es/embed/31e3ca3d97de4066badf32fdfcde158c?themeId=44&templateId=38&fontStackId=0"
-              width="500"
-              height="380"
-              frameBorder="0"
-              allowFullScreen
-              title="Anagramas Infantiles"
-            ></iframe>
+            {/* Juego 1: Organiza los números */}
+            <h1 className="text-2xl sm:text-4xl font-black text-purple-800 mb-6 sm:mb-8">
+              ¡Organiza los números del 1 al 10!
+            </h1>
+            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+              <SortableContext items={numbers} strategy={verticalListSortingStrategy}>
+                <div className="grid grid-cols-5 gap-2 sm:gap-4 mb-6 sm:mb-8">
+                  {numbers.map((number) => (
+                    <SortableItem key={number} id={number} />
+                  ))}
+                </div>
+              </SortableContext>
+            </DndContext>
           </div>
         )}
       </main>
@@ -311,7 +347,7 @@ const GamePlayer = () => {
             className="bg-white p-6 rounded-lg shadow-lg text-center mx-4"
           >
             <h2 className="text-2xl sm:text-3xl font-bold mb-4">¡Felicidades!</h2>
-            <p className="mb-4">Has organizado todos los números correctamente.</p>
+            <p className="mb-4">Has completado el juego.</p>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}

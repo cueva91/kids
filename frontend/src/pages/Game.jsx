@@ -42,14 +42,65 @@ const Game = () => {
 
           {/* Juegos con miniaturas ajustadas y organizadas */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 mt-4 w-full max-w-full">
-            {/* Juego 5 (más reciente con la etiqueta "NUEVO") */}
+            {/* Juego 10 (más reciente con la etiqueta "NUEVO") */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/10">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego10.jpg" alt="Juego 10" className="w-full h-auto object-cover" />
+                  <span className="absolute top-0 left-0 bg-orange-600 text-white px-2 py-1">NUEVO</span>
+                </div>
+              </Link>
+              <p className="text-center mt-2 text-white">Diferenciar Características de una Persona</p>
+            </div>
+
+            {/* Juego 9 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/9">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego9.jpg" alt="Juego 9" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+              <p className="text-center mt-2 text-white">Pensamiento Matemático</p>
+            </div>
+
+            {/* Juego 8 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/8">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego8.jpg" alt="Juego 8" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+              <p className="text-center mt-2 text-white">Aprendizaje de Inglés</p>
+            </div>
+
+            {/* Juego 7 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/7">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego7.jpg" alt="Juego 7" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+              <p className="text-center mt-2 text-white">Animales Terrestres y Acuáticos</p>
+            </div>
+
+            {/* Juego 6 */}
+            <div className="relative w-full max-w-[140px]">
+              <Link to="/game-player/6">
+                <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
+                  <img src="/miniaturajuego6.jpg" alt="Juego 6" className="w-full h-auto object-cover" />
+                </div>
+              </Link>
+              <p className="text-center mt-2 text-white">Ruleta de Países</p>
+            </div>
+
+            {/* Juego 5 */}
             <div className="relative w-full max-w-[140px]">
               <Link to="/game-player/5">
                 <div className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl w-full max-w-[140px]">
                   <img src="/miniaturajuego5.jpg" alt="Juego 5" className="w-full h-auto object-cover" />
-                  <span className="absolute top-0 left-0 bg-orange-600 text-white px-2 py-1">NUEVO</span>
                 </div>
               </Link>
+              <p className="text-center mt-2 text-white">Anagramas Infantiles</p>
             </div>
 
             {/* Juego 4 */}
@@ -59,6 +110,7 @@ const Game = () => {
                   <img src="/miniaturajuego4.jpg" alt="Juego 4" className="w-full h-auto object-cover" />
                 </div>
               </Link>
+              <p className="text-center mt-2 text-white">Sopa de Letras</p>
             </div>
 
             {/* Juego 3 */}
@@ -68,6 +120,7 @@ const Game = () => {
                   <img src="/miniaturajuego3.jpg" alt="Juego 3" className="w-full h-auto object-cover" />
                 </div>
               </Link>
+              <p className="text-center mt-2 text-white">Tablas de Multiplicar</p>
             </div>
 
             {/* Juego 2 */}
@@ -77,6 +130,7 @@ const Game = () => {
                   <img src="/miniaturajuego2.jpg" alt="Juego 2" className="w-full h-auto object-cover" />
                 </div>
               </Link>
+              <p className="text-center mt-2 text-white">Burbujas Numéricas</p>
             </div>
 
             {/* Juego 1 (más antiguo) */}
@@ -86,22 +140,11 @@ const Game = () => {
                   <img src="/miniaturajuego.jpg" alt="Juego 1" className="w-full h-auto object-cover" />
                 </div>
               </Link>
+              <p className="text-center mt-2 text-white">Organiza los Números</p>
             </div>
           </div>
-
-          {/* Additional buttons and content below */}
         </div>
       </main>
-
-      {/* Secciones adicionales */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 w-full max-w-full">
-        <GameSection title="Juegos Nuevos" color="bg-cyan-500" moreGames="35 más juegos nuevos" />
-        <GameSection title="Juegos Populares" color="bg-pink-500" moreGames="114 más juegos populares" />
-        <GameSection title="Juegos de Verano" color="bg-yellow-500" moreGames="27 más juegos de verano" />
-        <GameSection title="Juegos de Lectura" color="bg-pink-500" moreGames="28 más juegos de lectura" />
-        <GameSection title="Juegos de Naturaleza" color="bg-cyan-500" moreGames="71 más juegos de naturaleza" />
-        <MoreTopics />
-      </section>
 
       <button
         onClick={handleBack}
@@ -127,7 +170,7 @@ const GameSection = ({ title, color, moreGames }) => (
         <div key={num} className="overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-110 hover:shadow-xl w-full max-w-xs">
           <img src={`https://placehold.co/150x100`} alt={`${title} ${num}`} className="w-full h-auto object-cover" />
         </div>
-      ))}  
+      ))}
     </div>
     <a href="#" className="text-white">{moreGames}</a>
   </div>

@@ -5,6 +5,33 @@ import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
+  const lastGames = [
+    {
+      title: 'Diferenciar Características de una Persona',
+      thumbnail: '/miniaturajuego10.jpg',
+      link: '/game-player/10'
+    },
+    {
+      title: 'Pensamiento Matemático',
+      thumbnail: '/miniaturajuego9.jpg',
+      link: '/game-player/9'
+    },
+    {
+      title: 'Aprendizaje de Inglés',
+      thumbnail: '/miniaturajuego8.jpg',
+      link: '/game-player/8'
+    },
+    {
+      title: 'Animales Terrestres y Acuáticos',
+      thumbnail: '/miniaturajuego7.jpg',
+      link: '/game-player/7'
+    },
+    {
+      title: 'Ruleta de Países',
+      thumbnail: '/miniaturajuego6.jpg',
+      link: '/game-player/6'
+    }
+  ];
 
   useEffect(() => {
     const timeline = gsap.timeline({ repeat: -1, yoyo: true });
@@ -166,13 +193,13 @@ const Home = () => {
       {/* Sección de contenido optimizada */}
       <div className="bg-[#A6EF18] flex flex-col justify-center items-center py-4 md:py-8">
         <div className="text-center mt-4 mb-4 md:mt-8 md:mb-8">
-          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-regular">
+          <div className="text-center mt-2 mb-4 md:mb-8 text-xl md:text-3xl text-blue-500 transform transition duration-700 ease-in-out hover:scale-110 hover:text-[#F41971] hover:rotate-3 hover:skew-y-3 font-comic-neue font-bold">
             🎥 ¡Videos Educativos Impresionantes para Niños!
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row justify-center items-start w-full">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">
             {/* Miniaturas de video */}
             {videos.map((video, index) => (
               <div key={index} className="relative bg-[#581c87] p-2 rounded">
@@ -207,6 +234,23 @@ const Home = () => {
               <img src="sectioncoloring.png" alt="Juegos de colorear para niños" className="w-full h-[25rem] md:h-[45rem]" />
             </div>
           </Link>
+        </div>
+      </div>
+
+      {/* Nueva Sección: Últimos 5 Juegos Agregados */}
+      <div className="bg-yellow-500 text-center py-8 md:py-12">
+        <h2 className="text-2xl md:text-4xl font-bold text-blue-900 mb-6 font-comic-neue">🆕 Últimos Juegos Agregados</h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-1 md:gap-1.5">
+          {lastGames.map((game, index) => (
+            <Link key={index} to={game.link} className="w-36 md:w-44 mx-auto">
+              <img
+                src={game.thumbnail}
+                alt={game.title}
+                className="w-full h-36 md:h-40 object-cover rounded-lg shadow-md transition-transform transform hover:scale-110"
+              />
+              <p className="mt-1 text-sm md:text-base text-white">{game.title}</p>
+            </Link>
+          ))}
         </div>
       </div>
 
