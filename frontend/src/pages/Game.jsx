@@ -148,7 +148,7 @@ const Game = () => {
 
       <button
         onClick={handleBack}
-        className="fixed bottom-4 right-4 bg-pink-600 text-white text-xl font-comic-neue font-regular py-2 px-8 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+        className="fixed bottom-4 right-4 bg-pink-600 text-white text-xl font-comic-neue font-regular py-2 px-8 rounded-full shadow-lg hover:bg-pink-400 transition duration-300 transform hover:scale-110"
       >
         ⬅️ Volver Atrás
       </button>
