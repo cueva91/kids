@@ -1,4 +1,3 @@
-// PdfController.js
 const Pdf = require('../models/Pdf');
 const cloudinary = require('../config/cloudinary');
 
@@ -10,9 +9,19 @@ exports.uploadPdf = async (req, res) => {
       return res.status(400).json({ error: 'El archivo PDF y el título son requeridos' });
     }
 
-    // Subir el archivo a Cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      resource_type: 'raw', // Especifica que el recurso es un archivo PDF
+    // Subir el archivo a Cloudinary usando un buffer (porque estamos usando memoryStorage)
+    const result = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        { resource_type: 'raw' }, // Especifica que el recurso es un archivo PDF
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+      uploadStream.end(req.file.buffer); // Usar el buffer en lugar de la ruta del archivo
     });
 
     // Guardar la URL del PDF y el título en la base de datos
