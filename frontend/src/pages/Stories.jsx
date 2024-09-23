@@ -51,13 +51,6 @@ const Stories = () => {
                 key={pdf.id}
                 className="bg-white p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-110"
               >
-                <a href={pdf.pdf_path} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="/images/pdf-thumbnail.png" // Imagen miniatura para los PDFs
-                    alt={pdf.titulo}
-                    className="w-full h-auto object-cover rounded-lg border-4 border-yellow-400"
-                  />
-                </a>
                 <p className="text-gray-800 mt-2 font-bold">{pdf.titulo}</p>
                 <p className="text-gray-600 text-sm">
                   Publicado el: {new Date(pdf.created_at).toLocaleDateString()}
