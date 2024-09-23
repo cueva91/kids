@@ -9,7 +9,7 @@ const Stories = () => {
     // Fetch the PDFs from the backend, assuming the API returns an array of objects with { id, titulo, pdf_path, created_at }
     const fetchPdfs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/pdf');
+        const response = await axios.get('https://kids-nine.vercel.app/api/pdf');
         setPdfs(response.data); // Assuming the response contains the array of PDFs
         setIsLoading(false);
       } catch (error) {
