@@ -1,3 +1,4 @@
+// models/Pdf.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -12,7 +13,7 @@ const Pdf = sequelize.define('Pdf', {
     allowNull: false,
   },
   pdf_path: {
-    type: DataTypes.STRING(500),
+    type: DataTypes.STRING(500), // Guardaremos la URL del PDF
     allowNull: false,
   },
 });

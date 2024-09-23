@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const UploadPdfPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState(''); // Añadir campo de título
+  const [title, setTitle] = useState(''); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFileChange = (e) => {
@@ -16,11 +16,11 @@ const UploadPdfPage = () => {
 
   const handleConfirmUpload = async () => {
     const formData = new FormData();
-    formData.append('pdf', selectedFile);  // El nombre debe ser 'pdf' porque eso es lo que espera multer
+    formData.append('pdf', selectedFile);  // Nombre del campo esperado por multer
     formData.append('titulo', title);  // También incluye el título
   
     try {
-      const response = await axios.post('https://kids-nine.vercel.app/api/pdf', formData, {
+      const response = await axios.post('/api/pdf', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -38,7 +38,7 @@ const UploadPdfPage = () => {
       console.error('Error al subir el PDF:', error);
       alert('Hubo un problema al subir el PDF. Inténtalo de nuevo.');
     }
-  };  
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ const UploadPdfPage = () => {
       alert('Por favor, ingresa un título para el PDF.');
       return;
     }
-    setIsModalOpen(true);  // Abre el modal para confirmar la subida
+    setIsModalOpen(true);
   };
 
   return (

@@ -1,7 +1,8 @@
+// PdfController.js
 const Pdf = require('../models/Pdf');
-const path = require('path');
+const cloudinary = require('../config/cloudinary');
 
-// Subir un nuevo PDF
+// Subir un nuevo PDF a Cloudinary
 exports.uploadPdf = async (req, res) => {
   try {
     const { titulo } = req.body;
@@ -9,10 +10,15 @@ exports.uploadPdf = async (req, res) => {
       return res.status(400).json({ error: 'El archivo PDF y el título son requeridos' });
     }
 
-    // Guardar la ruta del PDF y el título en la base de datos
+    // Subir el archivo a Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      resource_type: 'raw', // Especifica que el recurso es un archivo PDF
+    });
+
+    // Guardar la URL del PDF y el título en la base de datos
     const newPdf = await Pdf.create({
       titulo,
-      pdf_path: `/uploads/pdf/${req.file.filename}`
+      pdf_path: result.secure_url // Guardamos la URL segura proporcionada por Cloudinary
     });
 
     res.status(201).json(newPdf);
