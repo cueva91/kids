@@ -6,11 +6,11 @@ const Stories = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch the PDFs from the backend, assuming the API returns an array of objects with { id, titulo, pdf_path, created_at }
+    // Fetch the PDFs from the backend
     const fetchPdfs = async () => {
       try {
-        const response = await axios.get('https://kids-nine.vercel.app/api/pdf');
-        setPdfs(response.data); // Assuming the response contains the array of PDFs
+        const response = await axios.get('https://kids-nine.vercel.app/api/pdf'); // URL de tu API en Vercel
+        setPdfs(response.data);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching PDFs:', error);
@@ -21,7 +21,7 @@ const Stories = () => {
     fetchPdfs();
   }, []);
 
-  // Sort PDFs by created_at date (most recent first)
+  // Ordenar los PDFs por fecha de creación
   const sortedPdfs = pdfs.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   return (
@@ -53,19 +53,17 @@ const Stories = () => {
               >
                 <a href={pdf.pdf_path} target="_blank" rel="noopener noreferrer">
                   <img
-                    src="/images/pdf-thumbnail.png" // Placeholder image for PDFs
+                    src="/images/pdf-thumbnail.png" // Imagen miniatura
                     alt={pdf.titulo}
                     className="w-full h-auto object-cover rounded-lg border-4 border-yellow-400"
                   />
                 </a>
                 <p className="text-gray-800 mt-2 font-bold">{pdf.titulo}</p>
-                <p className="text-gray-600 text-sm">
-                  Publicado el: {new Date(pdf.created_at).toLocaleDateString()}
-                </p>
                 <a
-                  href={pdf.pdf_path} // URL directa para descargar el PDF
-                  download // Este atributo fuerza la descarga del archivo
-                  className="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
+                  href={pdf.pdf_path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:text-blue-700 font-bold underline"
                 >
                   Descargar PDF
                 </a>
