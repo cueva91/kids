@@ -6,7 +6,7 @@ const path = require('path');
 const router = express.Router();
 
 // Configura multer para almacenar temporalmente los archivos antes de subir a Cloudinary
-const storage = multer.diskStorage({
+const storage = multer.memoryStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '../uploads')); // Carpeta temporal
   },
