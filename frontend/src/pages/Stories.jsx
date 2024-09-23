@@ -6,7 +6,7 @@ const Stories = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch the PDFs from the backend
+    // Fetch the PDFs from the backend, assuming the API returns an array of objects with { id, titulo, pdf_path, created_at }
     const fetchPdfs = async () => {
       try {
         const response = await axios.get('https://kids-nine.vercel.app/api/pdf');
@@ -52,23 +52,17 @@ const Stories = () => {
                 className="bg-white p-4 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-110"
               >
                 <a href={pdf.pdf_path} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="/images/pdf-thumbnail.png" // Imagen miniatura para los PDFs
-                    alt={pdf.titulo}
-                    className="w-full h-auto object-cover rounded-lg border-4 border-yellow-400"
-                  />
                 </a>
                 <p className="text-gray-800 mt-2 font-bold">{pdf.titulo}</p>
                 <p className="text-gray-600 text-sm">
                   Publicado el: {new Date(pdf.created_at).toLocaleDateString()}
                 </p>
                 <a
-                  href={pdf.pdf_path}
-                  target="_blank" // Abre el PDF en una nueva pestaña
-                  rel="noopener noreferrer"
+                  href={pdf.pdf_path} // URL directa para descargar el PDF
+                  download // Este atributo fuerza la descarga del archivo
                   className="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
                 >
-                  Ver y Descargar PDF
+                  Descargar PDF
                 </a>
               </div>
             ))}
