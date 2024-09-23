@@ -10,11 +10,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Configuración de CORS
+const allowedOrigins = ['https://abckidslearning.com', 'https://otro-dominio.com'];
+
 app.use(cors({
-  origin: 'https://abckidslearning.com',  // Permitir solicitudes desde tu frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-  credentials: true,  // Permitir envío de cookies si es necesario
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
+
 
 app.use(bodyParser.json());
 
