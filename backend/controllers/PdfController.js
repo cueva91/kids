@@ -1,5 +1,5 @@
 const Pdf = require('../models/Pdf');
-const cloudinary = require('../config/cloudinary');
+const cloudinary = require('../cloudinary');
 
 // Subir un nuevo PDF a Cloudinary
 exports.uploadPdf = async (req, res) => {
