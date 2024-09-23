@@ -20,7 +20,7 @@ const UploadPdfPage = () => {
     formData.append('titulo', title);  // Incluir el título
 
     try {
-      const response = await axios.post('http://localhost:5000/api/pdf', formData, {
+      const response = await axios.post('https://kids-nine.vercel.app/api/pdf', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
