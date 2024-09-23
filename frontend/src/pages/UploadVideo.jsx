@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';  // Importa axios
 
 const UploadVideoPage = () => {
   const [url, setUrl] = useState('');
@@ -33,22 +34,21 @@ const UploadVideoPage = () => {
 
   const handleConfirmUpload = async () => {
     try {
-      const response = await fetch('https://kids-nine.vercel.app/api/videos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url: videoUrl, title }), // Enviando también el título
+      // Usamos axios en lugar de fetch
+      const response = await axios.post('https://kids-nine.vercel.app/api/videos', {
+        url: videoUrl,
+        title: title,  // Enviando también el título
       });
 
-      if (!response.ok) {
+      // Si la respuesta no es exitosa, lanzamos un error
+      if (response.status !== 201) {
         throw new Error('Error al subir el video');
       }
 
       // Si la subida es exitosa, cierra el modal
       setIsModalOpen(false);
-      setUrl(''); // Limpiar el campo de la URL
-      setTitle(''); // Limpiar el campo del título
+      setUrl('');  // Limpiar el campo de la URL
+      setTitle('');  // Limpiar el campo del título
 
       alert('¡Video subido con éxito!');
     } catch (error) {
@@ -61,12 +61,12 @@ const UploadVideoPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 p-4">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 font-comic-neue font-bold">Subir un Nuevo Video</h1>
+          <h1 className="text-3xl font-bold text-gray-800 font-comic-neue">Subir un Nuevo Video</h1>
         </header>
 
         <section className="mb-8">
           <div className="text-center">
-            <h2 className="text-xl font-bold mt-4 text-gray-700 font-comic-neue font-regular">Subir Video</h2>
+            <h2 className="text-xl font-bold mt-4 text-gray-700 font-comic-neue">Subir Video</h2>
             <div className="w-full p-4">
               <div className="mb-4">
                 <input
@@ -74,18 +74,18 @@ const UploadVideoPage = () => {
                   value={url}
                   onChange={handleUrlChange}
                   placeholder="Ingrese URL del video de YouTube"
-                  className="border border-gray-300 p-2 w-full rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue font-regular"
+                  className="border border-gray-300 p-2 w-full rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue"
                 />
                 <input
                   type="text"
                   value={title}
                   onChange={handleTitleChange}
                   placeholder="Ingrese el título del video"
-                  className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue font-regular"
+                  className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue"
                 />
                 <button
                   onClick={handleEmbedVideo}
-                  className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic-neue font-regular"
+                  className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic-neue"
                 >
                   Incrustar Video
                 </button>
