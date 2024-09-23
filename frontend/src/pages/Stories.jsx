@@ -62,6 +62,13 @@ const Stories = () => {
                 <p className="text-gray-600 text-sm">
                   Publicado el: {new Date(pdf.created_at).toLocaleDateString()}
                 </p>
+                <a
+                  href={pdf.pdf_path} // URL directa para descargar el PDF
+                  download // Este atributo fuerza la descarga del archivo
+                  className="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
+                >
+                  Descargar PDF
+                </a>
               </div>
             ))}
           </div>
