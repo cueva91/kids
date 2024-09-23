@@ -12,7 +12,10 @@ exports.uploadPdf = async (req, res) => {
     // Subir el archivo a Cloudinary usando un buffer (porque estamos usando memoryStorage)
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { resource_type: 'raw' }, // Especifica que el recurso es un archivo PDF
+        { 
+          resource_type: 'raw', 
+          format: 'pdf'  // Forzar que el formato sea PDF
+        }, 
         (error, result) => {
           if (error) {
             reject(error);
@@ -21,7 +24,7 @@ exports.uploadPdf = async (req, res) => {
           }
         }
       );
-      uploadStream.end(req.file.buffer); // Usar el buffer en lugar de la ruta del archivo
+      uploadStream.end(req.file.buffer);
     });
 
     // Guardar la URL del PDF y el título en la base de datos

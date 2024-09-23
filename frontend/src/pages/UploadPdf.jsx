@@ -7,7 +7,12 @@ const UploadPdf = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file && file.type !== 'application/pdf') {
+      alert('Solo se permiten archivos PDF.');
+      return;
+    }
+    setSelectedFile(file);
   };
 
   const handleTitleChange = (e) => {
