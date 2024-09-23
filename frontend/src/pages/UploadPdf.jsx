@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const UploadPdfPage = () => {
+const UploadPdf = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState(''); 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -117,4 +117,4 @@ const UploadPdfPage = () => {
   );
 };
 
-export default UploadPdfPage;
+export default UploadPdf;
