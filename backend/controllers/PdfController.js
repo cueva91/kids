@@ -12,10 +12,7 @@ exports.uploadPdf = async (req, res) => {
     // Subir el archivo a Cloudinary usando un buffer (porque estamos usando memoryStorage)
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { 
-          resource_type: 'raw', 
-          format: 'pdf'  // Forzar que el formato sea PDF
-        }, 
+        { resource_type: 'raw' }, // Especifica que el recurso es un archivo PDF
         (error, result) => {
           if (error) {
             reject(error);
@@ -24,13 +21,19 @@ exports.uploadPdf = async (req, res) => {
           }
         }
       );
-      uploadStream.end(req.file.buffer);
+      uploadStream.end(req.file.buffer); // Usar el buffer en lugar de la ruta del archivo
     });
 
-    // Guardar la URL del PDF y el título en la base de datos
+    // Generar una URL firmada para descargar el PDF
+    const pdfSignedUrl = cloudinary.utils.sign_url(result.secure_url, {
+      type: 'authenticated',
+      expires_at: Math.floor(Date.now() / 1000) + 60 * 60, // Expira en 1 hora
+    });
+
+    // Guardar la URL firmada del PDF y el título en la base de datos
     const newPdf = await Pdf.create({
       titulo,
-      pdf_path: result.secure_url // Guardamos la URL segura proporcionada por Cloudinary
+      pdf_path: pdfSignedUrl // Guardamos la URL firmada
     });
 
     res.status(201).json(newPdf);

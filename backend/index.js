@@ -24,7 +24,6 @@ app.use(cors({
   credentials: true,
 }));
 
-
 app.use(bodyParser.json());
 
 // Middleware para servir archivos estáticos
