@@ -14,7 +14,8 @@ exports.uploadPdf = async (req, res) => {
       const uploadStream = cloudinary.uploader.upload_stream(
         { 
           resource_type: 'raw', 
-          format: 'pdf'  // Forzar que el formato sea PDF
+          format: 'pdf',          // Forzar que el formato sea PDF
+          access_mode: 'public'  // Asegura que el archivo sea accesible públicamente
         }, 
         (error, result) => {
           if (error) {
