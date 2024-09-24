@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';  // Importa la librería para manejar las fechas
+import { useNavigate } from 'react-router-dom'; // Importa el hook para navegar
 
 const Stories = () => {
   const [pdfs, setPdfs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate(); // Hook para manejar la navegación
 
   useEffect(() => {
     // Fetch the PDFs from the backend
@@ -21,6 +23,11 @@ const Stories = () => {
 
     fetchPdfs();
   }, []);
+
+  // Función para volver atrás
+  const handleBack = () => {
+    navigate('/'); // Navegar a la página de inicio
+  };
 
   // Sort PDFs by created_at date (most recent first)
   const sortedPdfs = pdfs.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
@@ -69,6 +76,14 @@ const Stories = () => {
           </div>
         )}
       </main>
+
+      {/* Botón para volver atrás */}
+      <button
+        onClick={handleBack}
+        className="fixed bottom-4 right-4 bg-yellow-500 text-white text-sm md:text-lg lg:text-xl font-comic-neue font-regular py-2 px-4 md:py-2 md:px-6 lg:py-2 lg:px-8 mt-4 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:scale-110"
+      >
+        ⬅️ Volver Atrás
+      </button>
 
       <footer className="text-center py-4 bg-green-200">
         <p className="text-gray-800 font-bold">Política de privacidad | Términos de uso | ABC Kids Learning © 2024</p>
