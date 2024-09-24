@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';  // Importa la librería para manejar las fechas
 
 const Stories = () => {
   const [pdfs, setPdfs] = useState([]);
@@ -53,7 +54,7 @@ const Stories = () => {
               >
                 <p className="text-gray-800 mt-2 font-bold">{pdf.titulo}</p>
                 <p className="text-gray-600 text-sm">
-                  Publicado el: {new Date(pdf.created_at).toLocaleDateString()}
+                  Publicado el: {dayjs(pdf.created_at).format('DD/MM/YYYY')}  {/* Formatear la fecha con dayjs */}
                 </p>
                 <a
                   href={pdf.pdf_path}
