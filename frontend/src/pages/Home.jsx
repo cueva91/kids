@@ -109,7 +109,6 @@ const Home = () => {
 
       {/* Sección del banner con abejas, imagen en primer plano y miniaturas de videos */}
       <div className="relative flex flex-col items-center justify-center py-4 md:py-12 overflow-hidden">
-        {/* Imagen de fondo del banner */}
         <img
           src="banner2.jpg"
           loading="lazy"
@@ -148,7 +147,6 @@ const Home = () => {
 
         {/* Contenedor de imagen de primer plano y miniaturas */}
         <div className="flex flex-col items-center md:flex-row justify-between w-full max-w-7xl mx-auto relative z-10 space-y-4 md:space-y-0">
-          {/* Miniaturas de videos (se apilan verticalmente en móviles) */}
           <div className="grid grid-cols-2 md:grid-cols-2 gap-4 w-full md:w-1/2 px-4">
             {videos.slice(0, 4).map((video, index) => (
               <Link key={index} to={`/video-player/${encodeURIComponent(video.url)}`} className="w-full">
@@ -156,14 +154,13 @@ const Home = () => {
                   src={extractThumbnail(video.url)}
                   alt={`Video educativo ${index + 1}`}
                   className="w-full h-28 md:h-32 object-cover shadow-md transform transition-transform hover:scale-110 hover:shadow-lg border-4 border-white"
-                  style={{ aspectRatio: "16/9" }} // Miniaturas alargadas horizontalmente
+                  style={{ aspectRatio: "16/9" }}
                 />
                 <p className="text-white text-center mt-2 text-xs md:text-base">{video.title}</p>
               </Link>
             ))}
           </div>
 
-          {/* Imagen en primer plano */}
           <Link to="/coloring" className="w-full md:w-1/2 flex justify-center">
             <img
               src="imgcolor.png"
@@ -174,7 +171,6 @@ const Home = () => {
           </Link>
         </div>
 
-        {/* Botones de JUEGOS y VIDEOS (ubicados en la parte inferior en móviles) */}
         <div className="w-full flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 mt-8">
           <Link to="/game">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
@@ -185,6 +181,12 @@ const Home = () => {
           <Link to="/coloring">
             <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
               🎨 Pintar
+            </button>
+          </Link>
+
+          <Link to="/stories">
+            <button className="bg-[#F41971] text-white text-lg md:text-2xl px-4 py-2 md:px-8 md:py-8 transform transition-transform duration-300 hover:scale-110 hover:bg-pink-600 shadow-lg font-comic-neue font-regular">
+              📚 Cuentos
             </button>
           </Link>
         </div>
@@ -200,7 +202,6 @@ const Home = () => {
 
         <div className="flex flex-col md:flex-row justify-center items-start w-full">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-2">
-            {/* Miniaturas de video */}
             {videos.map((video, index) => (
               <div key={index} className="relative bg-[#581c87] p-2 rounded">
                 {index === 0 && (
@@ -219,7 +220,6 @@ const Home = () => {
                 </Link>
               </div>
             ))}
-            {/* Botón centrado */}
             <div className="col-span-2 md:col-span-3 flex justify-center mt-8 md:mt-14">
               <Link to="/video">
                 <button className="bg-blue-500 text-xl md:text-3xl text-white px-16 md:px-36 py-4 md:py-8 rounded transform transition-transform duration-300 hover:scale-110 hover:bg-blue-600 shadow-lg hover:shadow-blue-500 font-comic-neue font-regular">
@@ -237,7 +237,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Nueva Sección: Últimos 5 Juegos Agregados */}
+      {/* Sección de Juegos */}
       <div className="bg-yellow-500 text-center py-8 md:py-12">
         <h2 className="text-2xl md:text-4xl font-bold text-blue-900 mb-6 font-comic-neue">🆕 Últimos Juegos Agregados</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-1 md:gap-1.5">
@@ -251,6 +251,31 @@ const Home = () => {
               <p className="mt-1 text-sm md:text-base text-white">{game.title}</p>
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* Nueva Sección Mejorada: Cuentos */}
+      <div className="bg-gradient-to-r from-green-400 to-blue-500 text-center py-16 md:py-24 relative overflow-hidden">
+        <div className="z-10 relative">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-comic-neue">📚 ¡Explora los Cuentos!</h2>
+          <p className="text-lg md:text-2xl text-white mb-12 font-light">
+            ¡Sumérgete en historias fascinantes y educativas para niños!
+          </p>
+
+          {/* Imagen central con efecto hover y clic */}
+          <Link to="/stories" className="inline-block transform transition-transform hover:scale-110">
+            <img
+              src="/cuentos.jpg"
+              alt="Historias y Cuentos para Niños"
+              className="w-[80%] md:w-[50%] mx-auto rounded-xl shadow-2xl border-8 border-white transition-transform transform hover:rotate-3 hover:scale-105"
+            />
+          </Link>
+        </div>
+
+        {/* Animación decorativa */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-0 left-0 w-40 h-40 bg-yellow-300 rounded-full opacity-40 transform -translate-x-10 -translate-y-10 animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-40 h-40 bg-pink-400 rounded-full opacity-40 transform translate-x-10 translate-y-10 animate-pulse"></div>
         </div>
       </div>
 
