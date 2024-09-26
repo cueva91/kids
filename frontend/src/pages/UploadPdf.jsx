@@ -1,13 +1,15 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const UploadPdf = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState(''); 
+  const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Ref para el input de archivo
+  const [captchaToken, setCaptchaToken] = useState(null); // Estado para el token de CAPTCHA
+
   const fileInputRef = useRef(null);
+  const recaptchaRef = useRef(null); // Ref para el componente de reCAPTCHA
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -22,27 +24,38 @@ const UploadPdf = () => {
     setTitle(e.target.value);
   };
 
+  // Manejar la verificación del reCAPTCHA
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleConfirmUpload = async () => {
+    if (!captchaToken) {
+      alert('Por favor, completa el reCAPTCHA.');
+      return;
+    }
+
     const formData = new FormData();
-    formData.append('pdf', selectedFile);  // Nombre del campo esperado por multer
-    formData.append('titulo', title);  // También incluye el título
-  
+    formData.append('pdf', selectedFile);
+    formData.append('titulo', title);
+    formData.append('captchaToken', captchaToken); // Enviar el token de CAPTCHA al backend
+
     try {
       const response = await axios.post('https://kids-nine.vercel.app/api/pdf', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-  
+
       if (response.status !== 201) {
         throw new Error('Error al subir el PDF');
       }
-  
-      // Limpiar el formulario después de la subida exitosa
+
       setIsModalOpen(false);
-      setTitle('');         // Limpiar el título
-      setSelectedFile(null); // Limpiar el archivo seleccionado
-      fileInputRef.current.value = '';  // Limpiar visualmente el campo de archivo
+      setTitle('');
+      setSelectedFile(null);
+      fileInputRef.current.value = '';
+      recaptchaRef.current.reset(); // Reiniciar el reCAPTCHA después de una subida exitosa
       alert('¡PDF subido con éxito!');
     } catch (error) {
       console.error('Error al subir el PDF:', error);
@@ -86,9 +99,18 @@ const UploadPdf = () => {
                   type="file"
                   accept="application/pdf"
                   onChange={handleFileChange}
-                  ref={fileInputRef}  // Asignar el ref al input de archivo
+                  ref={fileInputRef}
                   className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue"
                 />
+                
+                {/* reCAPTCHA */}
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="6Ley008qAAAAAIKu9BJSKE6JNsYm4jLzepGbSlDd"  // Reemplaza con tu clave del sitio
+                  onChange={handleCaptchaChange}
+                  className="mt-4"
+                />
+                
                 <button
                   onClick={handleSubmit}
                   className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic-neue"
