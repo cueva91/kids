@@ -278,7 +278,6 @@ const Home = () => {
             <div className="absolute bottom-0 right-0 w-32 h-32 bg-pink-400 rounded-full opacity-40 transform translate-x-8 translate-y-8 animate-pulse"></div>
           </div>
         </div>
-      </div>
 
       {/* Footer ajustado para móviles */}
       <footer className="bg-[#A6EF18] text-center py-2 md:py-4">
