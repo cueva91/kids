@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';  // Importa axios
+import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import ReCAPTCHA from 'react-google-recaptcha';  // Importamos reCAPTCHA
 
 const UploadVideoPage = () => {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState('');
+  const [captchaToken, setCaptchaToken] = useState(null); // Estado para el token de CAPTCHA
+
+  const recaptchaRef = useRef(null); // Ref para el componente de reCAPTCHA
 
   const handleUrlChange = (event) => {
     setUrl(event.target.value);
@@ -32,23 +36,33 @@ const UploadVideoPage = () => {
     return match ? match[1] : null;
   };
 
+  // Manejar la verificación del reCAPTCHA
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleConfirmUpload = async () => {
+    if (!captchaToken) {
+      alert('Por favor, completa el reCAPTCHA.');
+      return;
+    }
+
     try {
-      // Usamos axios en lugar de fetch
       const response = await axios.post('https://kids-nine.vercel.app/api/videos', {
         url: videoUrl,
         title: title,  // Enviando también el título
+        captchaToken,  // Enviar el token de CAPTCHA al backend
       });
 
-      // Si la respuesta no es exitosa, lanzamos un error
       if (response.status !== 201) {
         throw new Error('Error al subir el video');
       }
 
-      // Si la subida es exitosa, cierra el modal
+      // Si la subida es exitosa, cierra el modal y limpia los campos
       setIsModalOpen(false);
       setUrl('');  // Limpiar el campo de la URL
       setTitle('');  // Limpiar el campo del título
+      recaptchaRef.current.reset();  // Reiniciar el reCAPTCHA después de una subida exitosa
 
       alert('¡Video subido con éxito!');
     } catch (error) {
@@ -83,6 +97,15 @@ const UploadVideoPage = () => {
                   placeholder="Ingrese el título del video"
                   className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue"
                 />
+                
+                {/* reCAPTCHA */}
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="6Ley008qAAAAAIKu9BJSKE6JNsYm4jLzepGbSlDd"  // Reemplaza con tu clave del sitio
+                  onChange={handleCaptchaChange}
+                  className="mt-4"
+                />
+                
                 <button
                   onClick={handleEmbedVideo}
                   className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg w-full hover:bg-blue-600 transition-all duration-300 font-comic-neue"
