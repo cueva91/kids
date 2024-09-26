@@ -47,7 +47,7 @@ const Stories = () => {
 
       <main className="text-center py-8">
         <h1 className="text-3xl sm:text-4xl text-pink-500 mb-4 font-comic-neue font-bold">
-          ¡Descarga los mejores cuentos en formato PDF!
+          ¡Lee y Descarga los mejores cuentos en formato PDF!
         </h1>
 
         {isLoading ? (
