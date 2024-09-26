@@ -254,28 +254,29 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Nueva Sección Mejorada: Cuentos */}
-      <div className="bg-gradient-to-r from-green-400 to-blue-500 text-center py-16 md:py-24 relative overflow-hidden">
-        <div className="z-10 relative">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-comic-neue">📚 ¡Explora los Cuentos!</h2>
-          <p className="text-lg md:text-2xl text-white mb-12 font-light">
-            ¡Sumérgete en historias fascinantes y educativas para niños!
-          </p>
+      {/* Sección de Cuentos optimizada */}
+      <div className="bg-gradient-to-r from-green-400 to-blue-500 text-center py-12 md:py-16 relative overflow-hidden mt-6 md:mt-12">
+          <div className="z-10 relative">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 font-comic-neue">📚 ¡Explora los Cuentos!</h2>
+            <p className="text-base md:text-xl text-white mb-6 font-light">
+              Historias educativas y emocionantes para niños.
+            </p>
 
-          {/* Imagen central con efecto hover y clic */}
-          <Link to="/stories" className="inline-block transform transition-transform hover:scale-110">
-            <img
-              src="/cuentos.jpg"
-              alt="Historias y Cuentos para Niños"
-              className="w-[80%] md:w-[50%] mx-auto rounded-xl shadow-2xl border-8 border-white transition-transform transform hover:rotate-3 hover:scale-105"
-            />
-          </Link>
-        </div>
+            {/* Imagen central con efecto hover y clic */}
+            <Link to="/stories" className="inline-block transform transition-transform hover:scale-110">
+              <img
+                src="/cuentos.jpg"
+                alt="Historias y Cuentos para Niños"
+                className="w-[70%] md:w-[45%] mx-auto rounded-xl shadow-2xl border-8 border-white transition-transform transform hover:rotate-3 hover:scale-105"
+              />
+            </Link>
+          </div>
 
-        {/* Animación decorativa */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-0 left-0 w-40 h-40 bg-yellow-300 rounded-full opacity-40 transform -translate-x-10 -translate-y-10 animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 bg-pink-400 rounded-full opacity-40 transform translate-x-10 translate-y-10 animate-pulse"></div>
+          {/* Animación decorativa */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-yellow-300 rounded-full opacity-40 transform -translate-x-8 -translate-y-8 animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-pink-400 rounded-full opacity-40 transform translate-x-8 translate-y-8 animate-pulse"></div>
+          </div>
         </div>
       </div>
 
