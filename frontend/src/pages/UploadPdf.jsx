@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 const UploadPdf = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState(''); 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Ref para el input de archivo
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -35,9 +38,11 @@ const UploadPdf = () => {
         throw new Error('Error al subir el PDF');
       }
   
+      // Limpiar el formulario después de la subida exitosa
       setIsModalOpen(false);
-      setTitle('');
-      setSelectedFile(null);
+      setTitle('');         // Limpiar el título
+      setSelectedFile(null); // Limpiar el archivo seleccionado
+      fileInputRef.current.value = '';  // Limpiar visualmente el campo de archivo
       alert('¡PDF subido con éxito!');
     } catch (error) {
       console.error('Error al subir el PDF:', error);
@@ -81,6 +86,7 @@ const UploadPdf = () => {
                   type="file"
                   accept="application/pdf"
                   onChange={handleFileChange}
+                  ref={fileInputRef}  // Asignar el ref al input de archivo
                   className="border border-gray-300 p-2 w-full mt-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 font-comic-neue"
                 />
                 <button
